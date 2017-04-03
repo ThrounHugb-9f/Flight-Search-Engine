@@ -3,7 +3,7 @@ package search;
 import java.util.ArrayList;
 
 public class FlightManagerMock {
-	ArrayList<FlightModel> flights; 
+	ArrayList<FlightModel> flights;
 	
 	public static void main(String[] args) {
 		FlightManagerMock test = new FlightManagerMock();

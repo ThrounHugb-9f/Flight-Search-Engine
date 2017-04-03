@@ -1,6 +1,5 @@
 /bin/
 *.jar
-*.class
 .DS_Store
 .DS_Store?
 Thumbs.db
