@@ -1,0 +1,44 @@
+/bin/
+#Eclipse#
+###################
+ 
+*.pydevproject
+*.project
+*.metadata
+*/bin/*
+*/bin/
+*/tmp/**
+*.tmp
+*.bak
+*.swp
+*~.nib
+*local.properties
+*.classpath
+*.settings/*
+*.settings/
+*.loadpath
+*org.eclipse.wst.common.component
+*org.eclipse.wst.common.project.facet.core.xml
+*.properties
+*.orig
+*.classpath
+*.xml
+
+# Package Files #
+##################
+*.jar
+
+# Logs and databases #
+######################
+*.log
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
