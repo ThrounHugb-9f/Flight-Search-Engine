@@ -36,17 +36,13 @@ public class SearchController {
 			}
 		});
 		
-		for (FlightModel i : flights) {
-			System.out.println(i.getPrice());
-		}
-		
 		return flights;
 	}
 	
 	public static void main (String[] args) throws Exception {
 		SearchController test = new SearchController();
 		
-		ArrayList<FlightModel> flug = test.getFlightsByPriceRange(1000, 8000);
+		ArrayList<FlightModel> flug = test.getFlightsByPriceRange(1000, 12000);
 		
 		flug = test.orderByPrice();
 		
