@@ -31,14 +31,11 @@ public class SearchController {
 	public ArrayList<FlightModel> orderByPrice() {
 		
 		Collections.sort(flights, new Comparator<FlightModel>() {
-			@Override public int compare(FlightModel p1, FlightModel p2) {
+			@Override
+			public int compare(FlightModel p1, FlightModel p2) {
 				return p1.getPrice() - p2.getPrice(); //Orders in ascending order
 			}
 		});
-		
-		for (FlightModel i : flights) {
-			System.out.println(i.getPrice());
-		}
 		
 		return flights;
 	}
@@ -46,7 +43,7 @@ public class SearchController {
 	public static void main (String[] args) throws Exception {
 		SearchController test = new SearchController();
 		
-		ArrayList<FlightModel> flug = test.getFlightsByPriceRange(1000, 8000);
+		ArrayList<FlightModel> flug = test.getFlightsByPriceRange(1000, 12000);
 		
 		flug = test.orderByPrice();
 		
