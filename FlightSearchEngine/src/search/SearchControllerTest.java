@@ -18,7 +18,7 @@ public class SearchControllerTest {
 			System.out.println(i.getPrice());
 		}
 		
-		low = 7000;
+		low = 14000;
 		flights = test.getFlightsByPriceRange(low, high);
 	}
 }
