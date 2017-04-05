@@ -42,7 +42,7 @@ public class FlightManagerMock {
 		flights.add(flight);
 		flight = new FlightModel(17, "Keflavik", "Rome", "08.03.2017", "16:30", "08.03.2017", "20:30", 315, 11000);
 		flights.add(flight);
-		flight = new FlightModel(18, "Rome", "Keflavik", "18.03.2017", "06:20", "18.03.2017", "09:30", 124, 18000);
+		flight = new FlightModel(18, "Rome", "Keflavik", "18.03.2017", "06:20", "18.03.2017", "09:30", 124, 11000);
 		flights.add(flight);
 		flight = new FlightModel(19, "London", "Keflavik", "16.04.2017", "20:00", "16.04.2017", "22:30", 412, 19000);
 		flights.add(flight);

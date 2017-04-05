@@ -31,8 +31,7 @@ public class SearchController {
 	public ArrayList<FlightModel> orderByPrice() {
 		
 		Collections.sort(flights, new Comparator<FlightModel>() {
-			@Override
-			public int compare(FlightModel p1, FlightModel p2) {
+			@Override public int compare(FlightModel p1, FlightModel p2) {
 				return p1.getPrice() - p2.getPrice(); //Orders in ascending order
 			}
 		});

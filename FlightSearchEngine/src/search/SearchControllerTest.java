@@ -8,7 +8,7 @@ public class SearchControllerTest {
 		SearchController test = new SearchController();
 		
 		int low = 1000;
-		int high = 5500;
+		int high = 12500;
 		
 		ArrayList<FlightModel> flights = new ArrayList<FlightModel>();;
 		flights = test.getFlightsByPriceRange(low, high);
