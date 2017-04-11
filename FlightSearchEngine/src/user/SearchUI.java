@@ -4,6 +4,8 @@ import search.*;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import admin.*;
 import booking.*;
 import search.*;
@@ -20,6 +22,7 @@ public class SearchUI extends JFrame {
 	private JTextField textFieldArrival;
 	private JTextField textFieldDate;
 	private JTable table;
+	private JTable jTable_Display_Flights;
 
 	/**
 	 * Launch the application.
@@ -88,13 +91,9 @@ public class SearchUI extends JFrame {
 		});
 		btnSearchForFlight.setBounds(600, 66, 126, 40);
 		contentPane.add(btnSearchForFlight);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(6, 181, 988, 214);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-			
+        
+        jTable_Display_Flights = new JTable();
+        jTable_Display_Flights.setBounds(6, 150, 988, 322);
+        contentPane.add(jTable_Display_Flights);
 	}
 }

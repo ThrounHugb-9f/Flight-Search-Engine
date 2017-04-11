@@ -20,7 +20,7 @@ public class BookingManager {
 	}
 	
 	// Connection to Database
-	public Connection connect() {
+	public Connection Connect() {
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userName, password);
