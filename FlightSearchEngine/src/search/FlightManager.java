@@ -6,8 +6,7 @@ import booking.*;
 import user.*;
 import java.util.*;
 
-import javax.swing.table.DefaultTableModel;
-
+import javax.swing.JOptionPane;
 
 public class FlightManager {
 	
@@ -18,18 +17,13 @@ public class FlightManager {
 	private final String userName = "gunnarmarhardarson";
 	private final String password = "abcd1234";
 	
-	
-	//Attributes
-	Statement st;
-	ArrayList<FlightModel> flights;
-	
 	// Constructor
 	public FlightManager() {
 		
     }
 	
 	// Connection to Database
-	public Connection Connect() {
+	public Connection connect() {
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userName, password);
@@ -39,58 +33,51 @@ public class FlightManager {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e);
 		}
 		return con;
 	}
-		
-	public ArrayList<FlightModel> getFlightsByPriceRange(int lower, int higher) throws SQLException {
-		ArrayList<FlightModel> results = new ArrayList<FlightModel>();
-		
+	
+	public FlightModel[] getFlightsByPriceRange(int lower, int higher) {
+		ArrayList<FlightModel> flights = new ArrayList<FlightModel>();
 		try {
 			String sql = "SELECT * FROM flightdata WHERE price BETWEEN ? AND ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, lower);
-			ps.setInt(2, higher);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				int flightnumber = rs.getInt(1);
-				String departure = rs.getString(2);
-				String arrival = rs.getString(3);
-				String departuredate = rs.getString(4);
-				String departuretime = rs.getString(5);
-				String arrivaldate = rs.getString(6);
-				String arrivaltime = rs.getString(7);
-				int seats = rs.getInt(8);
-				int price = rs.getInt(9);
-				FlightModel flightmodel = new FlightModel(flightnumber, departure, arrival, departuredate, departuretime, arrivaldate, arrivaltime, seats, price);
-				results.add(flightmodel);
-			}
+			PreparedStatement preparedStatement = con.prepareStatement(sql);
+			preparedStatement.setInt(1, lower);
+			preparedStatement.setInt(2, higher);
+			ResultSet rs = preparedStatement.executeQuery(sql);
 			
+			while(rs.next()) {
+				FlightModel tmp = new FlightModel(rs.getInt("flightnumber"),
+												 rs.getString("departure"),
+												 rs.getString("arrival"),
+												 rs.getString("departuredate"),
+												 rs.getString("departuretime"),
+												 rs.getString("arrivaldate"),
+												 rs.getString("arrivaltime"),
+												 rs.getInt("seats"),
+												 rs.getInt("price"));
+				flights.add(tmp);
+			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
+		
+		FlightModel[] results = new FlightModel[flights.size()];
+		
+		for(int i = 0; i < flights.size(); i++) {
+			results[i] = flights.get(i);
+		}
+		
 		return results;
-	}	
+	}
 	
-	
-	public static void main(String[] args) throws SQLException {
+	public static void main (String[] args) throws Exception {
 		FlightManager test = new FlightManager();
 		
-		
-		ArrayList<FlightModel> flights = test.getFlightsByPriceRange(20000, 55000);
+		FlightModel[] flights = test.getFlightsByPriceRange(10000, 55000);
 		
 		for (FlightModel i : flights) {
 			System.out.println(i.getPrice());
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
