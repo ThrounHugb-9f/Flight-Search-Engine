@@ -11,9 +11,8 @@ public class BookingManager {
 	Connection con = null;
 	private final String url = "jdbc:postgresql://localhost:5432/fsdb";
 	private final String driver = "org.postgresql.Driver";
-	private final String userName = "gunnarmarhardarson";
-	private final String password = "abcd1234";
-
+	private final String userName = "Alienware";
+	private final String password = "123456";
 	// Constructor
 	public BookingManager() {
 	
