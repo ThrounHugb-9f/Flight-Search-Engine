@@ -19,7 +19,7 @@ public class SearchUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldDepart;
-	private JTextField textFieldArrival;
+	private JTextField textFieldDestination;
 	private JTextField textFieldDate;
 	private JTable table;
 	private JTable jTable_Display_Flights;
@@ -58,10 +58,10 @@ public class SearchUI extends JFrame {
 		lblDeparture.setBounds(300, 36, 89, 14);
 		contentPane.add(lblDeparture);
 		
-		JLabel lblArrival = new JLabel("Arrival:");
-		lblArrival.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblArrival.setBounds(300, 78, 89, 14);
-		contentPane.add(lblArrival);
+		JLabel lblDestination = new JLabel("Destination:");
+		lblDestination.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblDestination.setBounds(300, 78, 89, 14);
+		contentPane.add(lblDestination);
 		
 		JLabel lblDate = new JLabel("Date:");
 		lblDate.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -73,10 +73,10 @@ public class SearchUI extends JFrame {
 		contentPane.add(textFieldDepart);
 		textFieldDepart.setColumns(10);
 		
-		textFieldArrival = new JTextField();
-		textFieldArrival.setBounds(400, 75, 144, 20);
-		contentPane.add(textFieldArrival);
-		textFieldArrival.setColumns(10);
+		textFieldDestination = new JTextField();
+		textFieldDestination.setBounds(400, 75, 144, 20);
+		contentPane.add(textFieldDestination);
+		textFieldDestination.setColumns(10);
 		
 		textFieldDate = new JTextField();
 		textFieldDate.setBounds(400, 115, 144, 20);
@@ -96,4 +96,5 @@ public class SearchUI extends JFrame {
         jTable_Display_Flights.setBounds(6, 150, 988, 322);
         contentPane.add(jTable_Display_Flights);
 	}
+	
 }

@@ -15,25 +15,27 @@ public class AdminManager {
 	private final String userName = "gunnarmarhardarson";
 	private final String password = "abcd1234";
 
+	
 	// Constructor
 	public AdminManager() {
 		
 	}
 	
+	
 	// Connection to Database
-	public Connection Connect() {
+	public Connection connect() {
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userName, password);
 			if (con == null) {
 				System.out.println("Connection cannot be established");
 			}
-			return con;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e);
 		}
-		return null;
+		return con;
 	}
+	
+	
+	public 
 }

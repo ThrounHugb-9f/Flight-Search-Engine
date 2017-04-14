@@ -10,16 +10,16 @@ import user.*;
 
 
 public class SearchController {
-	FlightManagerMock flightManager = new FlightManagerMock();
-	ArrayList<FlightModel> flights;
+	FlightManager flightManager = new FlightManager();
+	//FlightModel[] flights;
 	
 	// Constructor
 	public SearchController() {
 		
 	}
 	
-	public ArrayList<FlightModel> getFlightsByPriceRange(int lower, int higher) throws IOException {
-		flights = new ArrayList<FlightModel>();
+	public FlightModel[] getFlightsByPriceRange(int lower, int higher) throws IOException {
+		FlightModel[] flights = new FlightModel[10];
 		
 		if (lower < 0 || lower > higher) throw new IOException("The value chosen for low is illeagal!");
 		
@@ -28,6 +28,7 @@ public class SearchController {
 		return flights;
 	}
 	
+	/*
 	public ArrayList<FlightModel> orderByPrice() {
 		
 		Collections.sort(flights, new Comparator<FlightModel>() {
@@ -38,16 +39,30 @@ public class SearchController {
 		
 		return flights;
 	}
+	*/
 	
 	public static void main (String[] args) throws Exception {
 		SearchController test = new SearchController();
 		
-		ArrayList<FlightModel> flights = test.getFlightsByPriceRange(1000, 12000);
+		//FlightManager test = new FlightManager();
 		
-		flights = test.orderByPrice();
+		// FlightModel[] flights = test.getFlightsByPriceRange(5500, 15000);
+		
+		//String price = "30.02.2017";
+		
+		FlightModel[] flights = test.getFlightsByPriceRange(50000, 60000);
 		
 		for (FlightModel i : flights) {
+			System.out.print(i.getFlightnumber() + " ");
+			System.out.print(i.getDeparture() + " ");
+			System.out.print(i.getArrival() + " ");
+			System.out.print(i.getDeparturedate() + " ");
+			System.out.print(i.getDeparturetime() + " ");
+			System.out.print(i.getArrivaldate() + " ");
+			System.out.print(i.getArrivaltime() + " ");
+			System.out.print(i.getSeats() + " ");
 			System.out.println(i.getPrice());
+			System.out.println();
 		}
 	}
 	
