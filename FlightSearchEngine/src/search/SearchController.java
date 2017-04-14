@@ -11,15 +11,42 @@ import user.*;
 
 public class SearchController {
 	FlightManager flightManager = new FlightManager();
-	//FlightModel[] flights;
+	FlightModel[] flights;
 	
 	// Constructor
 	public SearchController() {
 		
 	}
 	
+	// Getting flights by departure
+	public FlightModel[] getFlightsByDeparture(String depart) {
+		flights = new FlightModel[10];
+		
+		flights = flightManager.getFlightsByDeparture(depart);
+		
+		return flights;
+	}
+	
+	// Getting fights by destination
+	public FlightModel[] getFlightsByDestination(String dest) {
+		flights = new FlightModel[10];
+		
+		flights = flightManager.getFlightsByDeparture(dest);
+		
+		return flights;
+	}
+	
+	public FlightModel[] getFlightsByDate(String departime) {
+		flights = new FlightModel[10];
+		
+		flights = flightManager.getFlightsByDate(departime);
+		
+		return flights;
+	}
+	
+	// Getting flights by price range
 	public FlightModel[] getFlightsByPriceRange(int lower, int higher) throws IOException {
-		FlightModel[] flights = new FlightModel[10];
+		flights = new FlightModel[10];
 		
 		if (lower < 0 || lower > higher) throw new IOException("The value chosen for low is illeagal!");
 		
