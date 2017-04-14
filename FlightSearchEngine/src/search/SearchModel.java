@@ -8,15 +8,17 @@ public class SearchModel {
 	private int maxPrice;
 	private String destination;
 	private String departDate;
-	private String arrivalDate;
+	//private String arrivalDate;
+	private String departure;
 	private boolean roundTrip;
 	
-	public SearchModel(int maxPrice, String destination, String departDate, String arrivalDate, boolean roundTrip) {
+	public SearchModel(int maxPrice, String destination, String departDate, boolean roundTrip, String depart) {
 		this.maxPrice = maxPrice;
 		this.destination = destination;
 		this.departDate = departDate;
-		this.arrivalDate = arrivalDate;
+		//this.arrivalDate = arrivalDate;
 		this.roundTrip = roundTrip;
+		this.departure = depart;
 	}
 	
 	public int getMaxPrice() {
@@ -43,13 +45,13 @@ public class SearchModel {
 		this.departDate = departDate;
 	}
 	
-	public String getArrivalDate() {
-		return arrivalDate;
-	}
+	//public String getArrivalDate() {
+	//	return arrivalDate;
+	//}
 	
-	public void setArrivalDate(String arrivalDate) {
-		this.arrivalDate = arrivalDate;
-	}
+	//public void setArrivalDate(String arrivalDate) {
+	//	this.arrivalDate = arrivalDate;
+	//}
 	
 	public boolean getRoundTrip() {
 		return roundTrip;
@@ -57,5 +59,9 @@ public class SearchModel {
 	
 	public void setRoundTrip(boolean roundTrip) {
 		this.roundTrip = roundTrip;
+	}
+	
+	public String getDeparture() {
+		return departure;
 	}
 }

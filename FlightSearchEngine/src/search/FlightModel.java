@@ -17,6 +17,7 @@ public class FlightModel implements Comparator{
 	private String arrivaltime;
 	private int seats;
 	private int price;
+	private Seats flightseats;
 	
 	public FlightModel(int flightnumber, String departure,
 			String arrival, String departuredate, String departuretime,
@@ -102,6 +103,10 @@ public class FlightModel implements Comparator{
 	
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	public Seats getSeatInfo() {
+		return this.flightseats;
 	}
 
 	@Override

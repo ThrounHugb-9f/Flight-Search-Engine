@@ -83,32 +83,37 @@ public class SearchController {
 	public static void main (String[] args) throws Exception {
 		Scanner scan = new Scanner(System.in);
 		
+		System.out.println("Enter the highest price avalible");
+		int price = scan.nextInt();
+		
+		System.out.println("Enter where you will be flying from");
+		String depart = scan.next();
+		
+		System.out.println("Enter the desired destination");
+		String dest = scan.next();
+		
+		System.out.println("Enter the date of your departure");
+		String date = scan.next();
+
+		System.out.println("Is your trip a roundtrip? Y/N");
+		boolean round = false;
+		if (scan.next().equalsIgnoreCase("y")) {
+			round = true;
+		}
+
+		SearchModel search = new SearchModel(price, dest, date, round, depart);
+		
 		SearchController test = new SearchController();
 		
-		ArrayList<FlightModel> flug = test.getFlightsByPriceRange(1000, 15000);
+		ArrayList<FlightModel> flug = test.getFlightsByPriceRange(0, search.getMaxPrice());
 		
 		flug = test.orderByPrice();
 		
-		for (FlightModel i : flug) {
-			System.out.println(i.getDeparture() + " - " + i.getArrival() + " - " + i.getPrice());
-		}
+		flug = test.getFlightsByDeparture(search.getDeparture());
 		
-		System.out.println("----------------------------------------------------------");
-		flug = test.getFlightsByDeparture("Keflavik");
+		flug = test.getFlightsByDestination(search.getDestination(), flug);
 		
-		for (FlightModel i : flug) {
-			System.out.println(i.getDeparture() + " - " + i.getArrival() + " - " + i.getPrice());
-		}
-		
-		System.out.println("----------------------------------------------------------");
-		flug = test.getFlightsByDestination("London", flug);
-		
-		for (FlightModel i : flug) {
-			System.out.println(i.getDeparture() + " - " + i.getArrival() + " - " + i.getPrice());
-		}
-		
-		System.out.println("----------------------------------------------------------");
-		flug = test.getFlightsByDate("13.03.2017", flug);
+		flug = test.getFlightsByDate(search.getDepartDate(), flug);
 		
 		for (FlightModel i: flug) {
 			System.out.println(i.getDeparture() + " - " + i.getArrival() + " - " + i.getPrice());
