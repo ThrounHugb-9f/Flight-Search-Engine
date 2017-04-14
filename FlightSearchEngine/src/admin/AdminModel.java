@@ -5,37 +5,85 @@ import search.*;
 import user.*;
 
 public class AdminModel {
-	private int id;
+	private int flightnumber;
+	private String departure;
+	private String arrival;
+	private String departuredate;
+	private String departuretime;
+	private String arrivaldate;
+	private String arrivaltime;
 	private int seats;
 	private int price;
-	private String depart;
-	private String destination;
-	private String departDate;
-	private String arrivalDate;
-	private String departTime;
-	private String arrivalTime;
 	
 	// Constructor
-	public AdminModel(int id, int seats, int price,
-			String depart, String destination, String departDate,
-			String arrivalDate, String departTime, String arrivalTime) {
-		this.id = id;
+	public AdminModel(int flightnumber, String departure,
+			String arrival, String departuredate, String departuretime,
+			String arrivaldate, String arrivaltime, int seats, int price) {
+		this.flightnumber = flightnumber;
+		this.departure = departure;
+		this.arrival = arrival;
+		this.departuredate = departuredate;
+		this.departuretime = departuretime;
+		this.arrivaldate = arrivaldate;
+		this.arrivaltime = arrivaltime;
 		this.seats = seats;
 		this.price = price;
-		this.depart = depart;
-		this.destination = destination;
-		this.departDate = departDate;
-		this.arrivalDate = arrivalDate;
-		this.departTime = departTime;
-		this.arrivalTime = arrivalTime;
 	}
 	
-	public int getId() {
-		return id;
+	public int getFlightnumber() {
+		return flightnumber;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setFlightnumber(int flightnumber) {
+		this.flightnumber = flightnumber;
+	}
+	
+	public String getDeparture() {
+		return departure;
+	}
+	
+	public void setDeparture(String departure) {
+		this.departure = departure;
+	}
+	
+	public String getArrival() {
+		return arrival;
+	}
+	
+	public void setArrival(String arrival) {
+		this.arrival = arrival;
+	}
+	
+	public String getDeparturedate() {
+		return departuredate;
+	}
+	
+	public void setDeparturedate(String departuredate) {
+		this.departuredate = departuredate;
+	}
+	
+	public String getDeparturetime() {
+		return departuretime;
+	}
+	
+	public void setDeparturetime(String departuretime) {
+		this.departuretime = departuretime;
+	}
+	
+	public String getArrivaldate() {
+		return arrivaldate;
+	}
+	
+	public void setArrivaldate(String arrivaldate) {
+		this.arrivaldate = arrivaldate;
+	}
+	
+	public String getArrivaltime() {
+		return arrivaltime;
+	}
+	
+	public void setArrivaltime(String arrivaltime) {
+		this.arrivaltime = arrivaltime;
 	}
 	
 	public int getSeats() {
@@ -52,53 +100,5 @@ public class AdminModel {
 	
 	public void setPrice(int price) {
 		this.price = price;
-	}
-	
-	public String getDepart() {
-		return depart;
-	}
-	
-	public void setDepart(String depart) {
-		this.depart = depart;
-	}
-	
-	public String getDestination() {
-		return destination;
-	}
-	
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
-	
-	public String getDepartDate() {
-		return departDate;
-	}
-	
-	public void setDepartDate(String departDate) {
-		this.departDate = departDate;
-	}
-	
-	public String getArrivalDate() {
-		return arrivalDate;
-	}
-	
-	public void setArrivalDate(String arrivalDate) {
-		this.arrivalDate = arrivalDate;
-	}
-	
-	public String getDepartTime() {
-		return departTime;
-	}
-	
-	public void setDepartTime(String departTime) {
-		this.departTime = departTime;
-	}
-	
-	public String getArrivalTime() {
-		return arrivalTime;
-	}
-	
-	public void setArrivalTime(String arrivalTime) {
-		this.arrivalTime = arrivalTime;
 	}
 }

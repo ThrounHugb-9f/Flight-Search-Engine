@@ -17,12 +17,10 @@ public class FlightManager {
 	private final String userName = "gunnarmarhardarson";
 	private final String password = "abcd1234";
 	
-	
 	// Constructor
 	public FlightManager() {
 		
     }
-	
 	
 	// Connection to Database
 	public Connection connect() {
@@ -37,7 +35,6 @@ public class FlightManager {
 		}
 		return con;
 	}
-	
 	
 	// Getting all data for flights where departing from
 	public FlightModel[] getFlightsByDeparture(String depart) {
@@ -73,7 +70,6 @@ public class FlightManager {
 		return results;
 	}
 	
-	
 	// Getting all data for flights where arriving from
 	public FlightModel[] getFlightsByDestination(String dest) {
 		ArrayList<FlightModel> flights = new ArrayList<FlightModel>();
@@ -107,7 +103,6 @@ public class FlightManager {
 		
 		return results;
 	}
-	
 	
 	// Getting all data for flights by date
 	public FlightModel[] getFlightsByDate(String departime) {
@@ -178,7 +173,7 @@ public class FlightManager {
 		return results;
 	}
 	
-	
+	// Testing main class
 	public static void main (String[] args) throws Exception {
 		
 		FlightManager test = new FlightManager();
