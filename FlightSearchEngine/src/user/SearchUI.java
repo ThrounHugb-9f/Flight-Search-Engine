@@ -80,10 +80,14 @@ public class SearchUI extends JFrame {
 		contentPane.add(textFieldDate);
 		textFieldDate.setColumns(10);
 		
+		
 		JButton btnSearchForFlight = new JButton("Search For Flights");
 		btnSearchForFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				SearchControllerTest flightData = new SearchControllerTest();
+				flightData.getDataFromDataBase();
+			
 			}
 		});
 		btnSearchForFlight.setBounds(600, 66, 126, 40);
@@ -97,4 +101,14 @@ public class SearchUI extends JFrame {
 		scrollPane.setViewportView(table);
 			
 	}
-}
+
+
+	public String getTextfieldText() {
+		String deptext = new String(); 
+		deptext = textFieldDepart.getText(); 
+		return deptext;
+		}
+
+	}
+
+

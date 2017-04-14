@@ -14,13 +14,16 @@ public class FlightManager {
 	Connection con = null;
 	private final String url = "jdbc:postgresql://localhost:5432/fsdb";
 	private final String driver = "org.postgresql.Driver";
-	private final String userName = "gunnarmarhardarson";
-	private final String password = "abcd1234";
+	private final String userName = "postgres";
+	private final String password = "maggadora7";
+	String deptext;
+	
 	
 	// Constructor
 	public FlightManager() {
-		
-    }
+	}
+	
+	SearchUI textValue = new SearchUI();
 	
 	// Connection to Database
 	public Connection connect() {
@@ -38,23 +41,57 @@ public class FlightManager {
 		}
 		return null;
 	}
+	// Build query, execute and keep in ResultSet rs		
 		
-	public ArrayList<Flights> getFlightsByPriceRange(int lower, int higher) {
-		..
 		
-		ResultSet rs = st.executeQuery(sql);
+		public FlightModel[] getFlightByDestination() {
 		
 		ArrayList<FlightModel> flights = new ArrayList<FlightModel>();
 		
-		while(rs.next()) {
-			FlightModel flight = new FlightModel();
-			flight.setPrice(rs.getInt(price));
-			
-			
-			flights.add(flight);
-		}
+		try {
 		
-		return flights;
+		Connection con = DriverManager.getConnection(url, userName, password);
+		
+		SearchUI textValue = new SearchUI();
+		deptext = textValue.getTextfieldText();
+	
+		String sql = "SELECT * FROM flightdata WHERE (departure=?)";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, deptext);
+		
+	  
+		ResultSet rs = st.executeQuery();
+		
+		while(rs.next()) {
+			FlightModel tmp = new FlightModel(rs.getInt("flightnumber"),
+											 rs.getString("departure"),
+											 rs.getString("arrival"),
+											 rs.getString("departuredate"),
+											 rs.getString("departuretime"),
+											 rs.getString("arrivaldate"),
+											 rs.getString("arrivaltime"),
+											 rs.getInt("seats"),
+											 rs.getInt("price"));
+			flights.add(tmp);
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	FlightModel[] results = new FlightModel[flights.size()];
+	
+	for(int i = 0; i < flights.size(); i++) {
+		results[i] = flights.get(i);
+	}
+	
+		
+		return results;
 		
 	}
+	
 }
+
+
+	
+		
+

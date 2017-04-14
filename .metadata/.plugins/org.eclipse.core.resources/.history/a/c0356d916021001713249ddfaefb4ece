@@ -1,0 +1,31 @@
+package search;
+
+import user.*;
+import java.util.*;
+
+public class SearchControllerTest {
+	
+	ArrayList<FlightModel> flights;
+
+	public SearchControllerTest() {
+	}
+	
+	
+	public ArrayList<FlightModel> getDataFromDataBase() {
+	
+	flights = new ArrayList<FlightModel>();
+		
+	FlightManager connectdata = new FlightManager();
+	connectdata.connect();
+	
+	SearchUI textValue = new SearchUI();
+	textValue.getTextfieldText();
+	System.out.println("textValue");
+		
+		
+		
+		return flights;
+	
+	}
+	
+}

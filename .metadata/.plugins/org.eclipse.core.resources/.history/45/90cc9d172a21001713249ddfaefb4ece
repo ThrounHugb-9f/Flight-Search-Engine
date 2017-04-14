@@ -1,0 +1,53 @@
+package search;
+
+import java.sql.*;
+import admin.*;
+import booking.*;
+import user.*;
+import java.util.*;
+
+import javax.swing.JOptionPane;
+
+public class FlightManager {
+	
+	// Attributes for SQL Connection
+	Connection con = null;
+	private final String url = "jdbc:postgresql://localhost:5432/fsdb";
+	private final String driver = "org.postgresql.Driver";
+	private final String userName = "postgres";
+	private final String password = "maggadora7";
+	
+	// Constructor
+	public FlightManager() {
+		
+    }
+	
+	// Connection to Database
+	public Connection connect() {
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userName, password);
+			if (con == null) {
+				System.out.println("Connection cannot be established");
+			}
+			return con;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+		}
+		return null;
+	}
+	
+	// Build query, execute and keep in ResultSet rs
+			String sql = "SELECT * FROM flightdata WHERE (departure=? AND arrival=?)";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, textFieldDepart.getText());
+			st.setString(2, textFieldArrival.getText());
+		  
+			ResultSet rs = st.executeQuery();
+
+
+}
+		
+
