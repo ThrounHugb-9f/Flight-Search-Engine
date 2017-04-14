@@ -37,14 +37,16 @@ public class FlightManager {
 		return con;
 	}
 	
+	
 	public FlightModel[] getFlightsByPriceRange(int lower, int higher) {
 		ArrayList<FlightModel> flights = new ArrayList<FlightModel>();
 		try {
-			String sql = "SELECT * FROM flightdata WHERE price BETWEEN ? AND ?";
-			PreparedStatement preparedStatement = con.prepareStatement(sql);
-			preparedStatement.setInt(1, lower);
-			preparedStatement.setInt(2, higher);
-			ResultSet rs = preparedStatement.executeQuery(sql);
+			Connection con = DriverManager.getConnection(url, userName, password);
+			// String sql = ;
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM flightdata WHERE price BETWEEN ? AND ?");
+			ps.setInt(1, lower);
+			ps.setInt(2, higher);
+			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				FlightModel tmp = new FlightModel(rs.getInt("flightnumber"),
@@ -68,13 +70,15 @@ public class FlightManager {
 			results[i] = flights.get(i);
 		}
 		
-		return results;
+		return results;	
 	}
 	
+	
 	public static void main (String[] args) throws Exception {
+		
 		FlightManager test = new FlightManager();
 		
-		FlightModel[] flights = test.getFlightsByPriceRange(10000, 55000);
+		FlightModel[] flights = test.getFlightsByPriceRange(55000, 100000);
 		
 		for (FlightModel i : flights) {
 			System.out.println(i.getPrice());
