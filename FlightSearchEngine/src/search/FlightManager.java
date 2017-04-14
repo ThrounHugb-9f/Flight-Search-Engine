@@ -70,7 +70,7 @@ public class FlightManager {
 			results[i] = flights.get(i);
 		}
 		
-		return results;	
+		return results;
 	}
 	
 	
@@ -81,7 +81,16 @@ public class FlightManager {
 		FlightModel[] flights = test.getFlightsByPriceRange(55000, 100000);
 		
 		for (FlightModel i : flights) {
+			System.out.print(i.getFlightnumber() + " ");
+			System.out.print(i.getDeparture() + " ");
+			System.out.print(i.getArrival() + " ");
+			System.out.print(i.getDeparturedate() + " ");
+			System.out.print(i.getDeparturetime() + " ");
+			System.out.print(i.getArrivaldate() + " ");
+			System.out.print(i.getArrivaltime() + " ");
+			System.out.print(i.getSeats() + " ");
 			System.out.println(i.getPrice());
+			System.out.println();
 		}
 	}
 }
