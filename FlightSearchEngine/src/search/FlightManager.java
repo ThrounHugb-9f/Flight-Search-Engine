@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class FlightManager {
 	
 	// Attributes for SQL Connection
-	Connection con = null;
+	Connection con;
 	private final String url = "jdbc:postgresql://localhost:5432/fsdb";
 	private final String driver = "org.postgresql.Driver";
 	private final String userName = "gunnarmarhardarson";
@@ -30,31 +30,67 @@ public class FlightManager {
 			if (con == null) {
 				System.out.println("Connection cannot be established");
 			}
-			return con;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e);
 		}
-		return null;
+		return con;
 	}
-		
-	public ArrayList<Flights> getFlightsByPriceRange(int lower, int higher) {
-		..
-		
-		ResultSet rs = st.executeQuery(sql);
-		
+	
+	
+	public FlightModel[] getFlightsByPriceRange(int lower, int higher) {
 		ArrayList<FlightModel> flights = new ArrayList<FlightModel>();
-		
-		while(rs.next()) {
-			FlightModel flight = new FlightModel();
-			flight.setPrice(rs.getInt(price));
+		try {
+			Connection con = DriverManager.getConnection(url, userName, password);
+			// String sql = ;
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM flightdata WHERE price BETWEEN ? AND ?");
+			ps.setInt(1, lower);
+			ps.setInt(2, higher);
+			ResultSet rs = ps.executeQuery();
 			
-			
-			flights.add(flight);
+			while(rs.next()) {
+				FlightModel tmp = new FlightModel(rs.getInt("flightnumber"),
+												 rs.getString("departure"),
+												 rs.getString("arrival"),
+												 rs.getString("departuredate"),
+												 rs.getString("departuretime"),
+												 rs.getString("arrivaldate"),
+												 rs.getString("arrivaltime"),
+												 rs.getInt("seats"),
+												 rs.getInt("price"));
+				flights.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		return flights;
+		FlightModel[] results = new FlightModel[flights.size()];
 		
+		for(int i = 0; i < flights.size(); i++) {
+			results[i] = flights.get(i);
+		}
+		
+		return results;
+	}
+	
+	
+	public static void main (String[] args) throws Exception {
+		
+		FlightManager test = new FlightManager();
+		
+		FlightModel[] flights = test.getFlightsByPriceRange(55000, 100000);
+		
+		for (FlightModel i : flights) {
+			System.out.print(i.getFlightnumber() + " ");
+			System.out.print(i.getDeparture() + " ");
+			System.out.print(i.getArrival() + " ");
+			System.out.print(i.getDeparturedate() + " ");
+			System.out.print(i.getDeparturetime() + " ");
+			System.out.print(i.getArrivaldate() + " ");
+			System.out.print(i.getArrivaltime() + " ");
+			System.out.print(i.getSeats() + " ");
+			System.out.println(i.getPrice());
+			System.out.println();
+		}
 	}
 }

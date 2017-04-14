@@ -42,11 +42,11 @@ public class SearchController {
 	public static void main (String[] args) throws Exception {
 		SearchController test = new SearchController();
 		
-		ArrayList<FlightModel> flug = test.getFlightsByPriceRange(1000, 12000);
+		ArrayList<FlightModel> flights = test.getFlightsByPriceRange(1000, 12000);
 		
-		flug = test.orderByPrice();
+		flights = test.orderByPrice();
 		
-		for (FlightModel i : flug) {
+		for (FlightModel i : flights) {
 			System.out.println(i.getPrice());
 		}
 	}
