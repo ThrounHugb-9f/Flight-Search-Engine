@@ -91,6 +91,56 @@ public class AdminManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return null;
+	}
+	
+	// Deleting a flight from database
+	public AdminModel[] deleteFlight(int flightnumber) {
+		try {
+			Connection con = DriverManager.getConnection(url, userName, password);
+			PreparedStatement ps = con.prepareStatement("DELETE FROM flightdata WHERE flightnumber = ?");
+			
+			ps.setInt(1, flightnumber);
+			
+			// execute the prepared statement delete
+			ps.executeUpdate();
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	// Update flights in database
+	public AdminModel[] updateFlight(String departure, String arrival,
+			String departDate, String departTime, String arrivalDate, String arrivalTime,
+			int seats, int price, int flightnumber) {
+		try {
+			Connection con = DriverManager.getConnection(url, userName, password);
+			PreparedStatement ps = con.prepareStatement("UPDATE flightdata SET departure = ?,"
+					+ "arrival = ?, departuredate = ?, departuretime = ?, arrivaldate = ?,"
+					+ "arrivaltime = ?, seats = ?, price = ? WHERE flightnumber = ?");
+			ps.setString(1, departure);
+			ps.setString(2, arrival);
+			ps.setString(3, departDate);
+			ps.setString(4, departTime);
+			ps.setString(5, arrivalDate);
+			ps.setString(6, arrivalTime);
+			ps.setInt(7, seats);
+			ps.setInt(8, price);
+			ps.setInt(9, flightnumber);
+			
+			// execute the prepared statement update
+			ps.executeUpdate();
+			ps.close();
+			
+		} catch (Exception e) {
+			e.getMessage();
+		}
+ 		
 		return null;
 	}
 	
@@ -99,8 +149,18 @@ public class AdminManager {
 			
 		AdminManager test = new AdminManager();
 		
-		test.addNewFlight(41, "Keflavik", "Tokyo", "03.04.2017", "16:30", ""
-				+ "04.04.2017", "04:30", 123, 84890);
+		//String departure = "Keflavik", arrival = "Rome", departDate = "15.03.2017", departTime = "17:30", arrivalDate = "15.03.2017", arrivalTime = "21:30";
+		//int seats = 251, price = 52525, flightnumber = 21;
+		
+		//test.updateFlight(departure, arrival, departDate, departTime, arrivalDate, arrivalTime, seats, price, flightnumber);
+		
+		
+		//int del = 41;
+		
+		//test.deleteFlight(del);
+		
+		//test.addNewFlight(41, "Keflavik", "Tokyo", "03.04.2017", "16:30", ""
+		//		+ "04.04.2017", "04:30", 123, 84890);
 			
 		//FlightModel[] flights = test.getFlightsByPriceRange(5500, 15000);
 			
@@ -122,5 +182,6 @@ public class AdminManager {
 			System.out.println();
 		}
 		*/
+		System.out.println("Done!");
 	}
 }
