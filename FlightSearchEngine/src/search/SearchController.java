@@ -10,8 +10,10 @@ import user.*;
 
 
 public class SearchController {
+	SearchUI textValue = new SearchUI();
 	FlightManager flightManager = new FlightManager();
-	FlightModel[] flights;
+	private FlightModel[] flights;
+	private String depText;
 	
 	// Constructor
 	public SearchController() {
@@ -19,10 +21,11 @@ public class SearchController {
 	}
 	
 	// Getting flights by departure
-	public FlightModel[] getFlightsByDeparture(String depart) {
+	public FlightModel[] getFlightsByDeparture() {
+		depText = textValue.getTextFieldDeparture();
 		flights = new FlightModel[10];
 		
-		flights = flightManager.getFlightsByDeparture(depart);
+		flights = flightManager.getFlightsByDeparture(depText);
 		
 		return flights;
 	}
@@ -77,7 +80,7 @@ public class SearchController {
 		
 		//String price = "30.02.2017";
 		
-		FlightModel[] flights = test.getFlightsByPriceRange(50000, 60000);
+		FlightModel[] flights = test.getFlightsByDeparture();
 		
 		for (FlightModel i : flights) {
 			System.out.print(i.getFlightnumber() + " ");

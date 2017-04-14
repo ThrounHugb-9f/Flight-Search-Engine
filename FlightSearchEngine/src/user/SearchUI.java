@@ -97,4 +97,10 @@ public class SearchUI extends JFrame {
         contentPane.add(jTable_Display_Flights);
 	}
 	
+	public String getTextFieldDeparture() {
+		String depText = new String(); 
+		depText = textFieldDepart.getText(); 
+		return depText;
+		}
+	
 }
