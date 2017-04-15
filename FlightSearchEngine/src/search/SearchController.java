@@ -10,22 +10,21 @@ import user.*;
 
 
 public class SearchController {
-	SearchUI textValue = new SearchUI();
+	//SearchUI textValue = new SearchUI();
 	FlightManager flightManager = new FlightManager();
 	private FlightModel[] flights;
-	private String depText;
+	private FlightModel[] newFlights;
 	
 	// Constructor
 	public SearchController() {
 		
 	}
 	
-	// Getting flights by departure
-	public FlightModel[] getFlightsByDeparture() {
-		depText = textValue.getTextFieldDeparture();
+	// Getting flights by departure	
+	public FlightModel[] getFlightsByDeparture(String depart) {
 		flights = new FlightModel[10];
 		
-		flights = flightManager.getFlightsByDeparture(depText);
+		flights = flightManager.getFlightsByDeparture(depart);
 		
 		return flights;
 	}
@@ -59,7 +58,7 @@ public class SearchController {
 	}
 	
 	/*
-	public ArrayList<FlightModel> orderByPrice() {
+	public FlightModel[] orderByPrice() {
 		
 		Collections.sort(flights, new Comparator<FlightModel>() {
 			@Override public int compare(FlightModel p1, FlightModel p2) {
@@ -80,7 +79,9 @@ public class SearchController {
 		
 		//String price = "30.02.2017";
 		
-		FlightModel[] flights = test.getFlightsByDeparture();
+		String depart = "London";
+		
+		FlightModel[] flights = test.getFlightsByDeparture(depart);
 		
 		for (FlightModel i : flights) {
 			System.out.print(i.getFlightnumber() + " ");

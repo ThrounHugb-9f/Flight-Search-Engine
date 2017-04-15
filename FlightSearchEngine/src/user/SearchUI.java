@@ -23,6 +23,9 @@ public class SearchUI extends JFrame {
 	private JTextField textFieldDate;
 	private JTable table;
 	private JTable jTable_Display_Flights;
+	private FlightModel[] flights;
+	SearchController searchController = new SearchController();
+	DefaultTableModel model = new DefaultTableModel();
 
 	/**
 	 * Launch the application.
@@ -83,18 +86,58 @@ public class SearchUI extends JFrame {
 		contentPane.add(textFieldDate);
 		textFieldDate.setColumns(10);
 		
+		jTable_Display_Flights = new JTable(model);
+        jTable_Display_Flights.setBounds(6, 150, 988, 322);
+        contentPane.add(jTable_Display_Flights);
+		
+		// Test class for JButton and JTable
 		JButton btnSearchForFlight = new JButton("Search For Flights");
 		btnSearchForFlight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+				String textFieldValueDepart = getTextFieldDeparture();
 				
+				FlightModel[] flights = searchController.getFlightsByDeparture(textFieldValueDepart);
+				
+				model.setColumnIdentifiers(new String[] {"Flightnumber", "Departure", "Destination", ""
+						+ "Departure Date", "Departure Time", "Arrival Date", "Arrival Time", ""
+								+ "Seats Available", "Price"});
+				for (FlightModel i : flights) {
+					model.addRow(new String[] {Integer.toString(i.getFlightnumber()), i.getDeparture(),
+											   i.getArrival(), i.getDeparturedate(), i.getDeparturetime(),
+											   i.getArrivaldate(), i.getArrivaltime(), Integer.toString(i.getSeats()),
+											   Integer.toString(i.getPrice())});
+				}
+				
+				jTable_Display_Flights.setModel(model);
 			}
 		});
+		
+		/*
+		JButton btnSearchForFlight = new JButton("Search For Flights");
+		btnSearchForFlight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String textFieldValueDepart = getTextFieldDeparture();
+				
+				FlightModel[] flights = searchController.getFlightsByDeparture(textFieldValueDepart);
+				
+				for (FlightModel i : flights) {
+					System.out.print(i.getFlightnumber() + " ");
+					System.out.print(i.getDeparture() + " ");
+					System.out.print(i.getArrival() + " ");
+					System.out.print(i.getDeparturedate() + " ");
+					System.out.print(i.getDeparturetime() + " ");
+					System.out.print(i.getArrivaldate() + " ");
+					System.out.print(i.getArrivaltime() + " ");
+					System.out.print(i.getSeats() + " ");
+					System.out.println(i.getPrice());
+					System.out.println();
+				}
+			}
+		});
+		*/
 		btnSearchForFlight.setBounds(600, 66, 126, 40);
 		contentPane.add(btnSearchForFlight);
         
-        jTable_Display_Flights = new JTable();
-        jTable_Display_Flights.setBounds(6, 150, 988, 322);
-        contentPane.add(jTable_Display_Flights);
 	}
 	
 	public String getTextFieldDeparture() {
