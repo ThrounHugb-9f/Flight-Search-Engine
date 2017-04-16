@@ -123,7 +123,7 @@ public class SearchUI extends JFrame {
 		jTable_Display_Flights.setBounds(6, 220, 938, 302);
         contentPane.add(jTable_Display_Flights);
 		
-		// Test class for JButton and JTable
+		// Searching for flights departing from specific location
 		JButton btnSearchForFlight = new JButton("Search For Flights");
 		btnSearchForFlight.setBounds(600, 66, 126, 40);
 		btnSearchForFlight.addActionListener(new ActionListener() {

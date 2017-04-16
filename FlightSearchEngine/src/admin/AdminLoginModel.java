@@ -1,3 +1,4 @@
+/*
 package admin;
 
 import java.sql.*;
@@ -44,3 +45,4 @@ public class AdminLoginModel {
 		this.password = password;
 	}
 }
+*/

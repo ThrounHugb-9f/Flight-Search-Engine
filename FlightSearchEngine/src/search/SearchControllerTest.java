@@ -10,7 +10,7 @@ public class SearchControllerTest {
 		int low = 1000;
 		int high = 12500;
 		
-		ArrayList<FlightModel> flights = new ArrayList<FlightModel>();;
+		FlightModel[] flights;
 		flights = test.getFlightsByPriceRange(low, high);
 		
 		System.out.println("The value of low = " + low + " and the value of high = " + high);

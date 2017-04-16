@@ -1,3 +1,4 @@
+/*
 package admin;
 
 import java.sql.Connection;
@@ -8,6 +9,9 @@ import admin.*;
 import booking.*;
 import user.*;
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import search.*;
 
 public class AdminLoginManager {
@@ -38,19 +42,31 @@ public class AdminLoginManager {
 		return con;
 	}
 	
-	public AdminLoginModel[] checkUsernAndPassw(String usern, String passw) {
+	public boolean checkUsernAndPassw(String usern, String passw) {
 		Connection con;
 		PreparedStatement ps;
+		ResultSet rs;
 		
 		try {
 			con = DriverManager.getConnection(url, userName, password);
-			ps = con.prepareStatement("SELECT 'username', 'password' FROM adminlogin"
-									  + "WHERE 'username'  = ? AND 'password' = ?");
+			ps = con.prepareStatement("SELECT * FROM adminlogin WHERE 'username' = ? AND 'password' = ?");
+			ps.setString(1, usern);
+			ps.setString(2, passw);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				//JOptionPane.showMessageDialog(null, "Connection Successful");
+				return true;
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Invalid username or password");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return true;
 	}
 	
 }
+*/
