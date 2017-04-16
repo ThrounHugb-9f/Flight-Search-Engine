@@ -36,6 +36,19 @@ public class AdminUI extends JFrame {
 	private JLabel lblDeleteFlightNumber;
 	
 	// Breytur
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AdminUI frame = new AdminUI();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public AdminUI() {
 		
