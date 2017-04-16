@@ -20,7 +20,7 @@ public class BookingUI extends JFrame {
 	public BookingUI() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 408, 553);
+		setBounds(100, 100, 408, 482);
 		setTitle("Booking");
 		contentPane = new JPanel();
 		setContentPane(contentPane);
@@ -40,7 +40,7 @@ public class BookingUI extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(281, 468, 97, 25);
+		btnSubmit.setBounds(281, 401, 97, 25);
 		contentPane.add(btnSubmit);
 		
 		JLabel lblKe = new JLabel("Social security Nr.");
@@ -76,7 +76,7 @@ public class BookingUI extends JFrame {
 		textField_3.setColumns(10);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 158, 520, 2);
+		separator.setBounds(0, 167, 390, 2);
 		contentPane.add(separator);
 		
 		JLabel lblSeats = new JLabel("Seats");

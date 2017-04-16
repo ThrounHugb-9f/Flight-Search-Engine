@@ -13,6 +13,9 @@ import search.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.border.TitledBorder;
 
 
 public class SearchUI extends JFrame {
@@ -49,6 +52,24 @@ public class SearchUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 500);
 		setTitle("FlightSearchEngine");
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmLogInAs = new JMenuItem("log in as admin");
+		mntmLogInAs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				AdminLoginUI LogIn = new AdminLoginUI();
+				LogIn.setVisible(true);
+				
+				
+			}
+		});
+		mnFile.add(mntmLogInAs);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
