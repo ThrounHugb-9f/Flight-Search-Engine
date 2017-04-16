@@ -1,12 +1,12 @@
 package admin;
 
-public class AdminModelLogin {
+public class AdminLoginModel {
 	private int idLogin;
 	private String username;
 	private int password;
 	
 	// Constructor
-	public AdminModelLogin(int idLogin, String username,
+	public AdminLoginModel(int idLogin, String username,
 			int password) {
 		this.idLogin = idLogin;
 		this.username = username;
