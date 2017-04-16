@@ -6,6 +6,8 @@ import admin.*;
 import booking.*;
 import search.*;
 import java.awt.Window.Type;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminLoginUI extends JFrame {
 	private JTextField textField;
@@ -24,6 +26,11 @@ public class AdminLoginUI extends JFrame {
 		getContentPane().add(lblPassword);
 		
 		JButton btnLogIn = new JButton("Log in");
+		btnLogIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnLogIn.setBounds(317, 143, 97, 25);
 		getContentPane().add(btnLogIn);
 		
