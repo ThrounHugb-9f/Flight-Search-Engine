@@ -10,7 +10,6 @@ import user.*;
 
 
 public class SearchController {
-	//SearchUI textValue = new SearchUI();
 	FlightManager flightManager = new FlightManager();
 	private FlightModel[] flights;
 	private FlightModel[] newFlights;
