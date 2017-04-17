@@ -27,11 +27,12 @@ public class SearchController {
 	public FlightModel[] getFlightsByDestination(String dest) {
 		flights = new FlightModel[10];
 		
-		flights = flightManager.getFlightsByDeparture(dest);
+		flights = flightManager.getFlightsByDestination(dest);
 		
 		return flights;
 	}
 	
+	// Getting flights by date
 	public FlightModel[] getFlightsByDate(String departime) {
 		flights = new FlightModel[10];
 		
@@ -69,13 +70,13 @@ public class SearchController {
 		
 		//FlightManager test = new FlightManager();
 		
-		// FlightModel[] flights = test.getFlightsByPriceRange(5500, 15000);
+		// FlightModel[] flights = test.getFlightsByDestination("Rome");
 		
 		//String price = "30.02.2017";
 		
-		String depart = "London";
+		String dest = "London";
 		
-		FlightModel[] flights = test.getFlightsByDeparture(depart);
+		FlightModel[] flights = test.getFlightsByDestination(dest);
 		
 		for (FlightModel i : flights) {
 			System.out.print(i.getFlightnumber() + " ");

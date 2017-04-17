@@ -34,7 +34,7 @@ public class AdminLoginUI extends JFrame {
 				if (adminLoginController.checkUserAndPass(textFieldValueUserName, textFieldValuePassword) == true) {
 					AdminUI adminUI = new AdminUI();
 					adminUI.setVisible(true);
-					
+					JOptionPane.showMessageDialog(null, "Logged in as Admin");
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Error");

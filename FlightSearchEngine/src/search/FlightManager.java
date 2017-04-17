@@ -67,7 +67,7 @@ public class FlightManager {
 		return results;
 	}
 	
-	// Getting all data for flights where arriving from
+	// Getting all data for flights where arriving at
 	public FlightModel[] getFlightsByDestination(String dest) {
 		ArrayList<FlightModel> flights = new ArrayList<FlightModel>();
 		try {
