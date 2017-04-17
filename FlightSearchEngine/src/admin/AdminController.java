@@ -22,10 +22,20 @@ public class AdminController {
 		return flights;
 	}
 	
+	// Adding a new flight into the database
 	public AdminModel[] addNewFlight(int flightnumber, String departure, String arrival,
 			String departDate, String departTime, String arrivalDate, String arrivalTime,
 			int seats, int price) {
 		
+		adminManager.addNewFlight(flightnumber, departure, arrival, departDate, departTime, arrivalDate, arrivalTime, seats, price);
+		
+		return null;
+	}
+	
+	// Deleting a flight from the database
+	public AdminModel[] deleteFlight(int flightnumber) {
+		
+		adminManager.deleteFlight(flightnumber);
 		
 		return null;
 	}

@@ -12,11 +12,9 @@ public class AdminLoginController {
 	public boolean checkUserAndPass(String usern, String passw) {
 		
 		if(adminLoginManager.checkUserAndPass(usern, passw) == true) {
-			System.out.println("true");
 			return true;
 		}
 		else {
-			System.out.println("false");
 			return false;
 		}
 	}
