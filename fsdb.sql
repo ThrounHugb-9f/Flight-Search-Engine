@@ -39,9 +39,8 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE adminlogin (
-    id integer NOT NULL,
-    username character varying(25) NOT NULL,
-    password integer NOT NULL
+    username character varying(20),
+    password character varying(20)
 );
 
 
@@ -87,8 +86,8 @@ ALTER TABLE flightdata OWNER TO gunnarmarhardarson;
 -- Data for Name: adminlogin; Type: TABLE DATA; Schema: public; Owner: gunnarmarhardarson
 --
 
-COPY adminlogin (id, username, password) FROM stdin;
-1	admin	1234
+COPY adminlogin (username, password) FROM stdin;
+admin	1234
 \.
 
 
@@ -108,55 +107,48 @@ COPY bookings (id, name, kennitala, email, phonenumber, seatsreserved, flightnum
 --
 
 COPY flightdata (flightnumber, departure, arrival, departuredate, departuretime, arrivaldate, arrivaltime, seats, price) FROM stdin;
-1	Keflavik/Iceland	Rome/Italy	10.03.2017	17:30	10.03.2017	21:30	200	43986
-2	Rome/Italy	Keflavik/Iceland	18.03.2017	06:20	18.03.2017	09:30	200	35748
-3	Keflavik/Iceland	Oslo/Norway	15.03.2017	14:00	15.03.2017	16:00	150	14462
-4	Oslo/Norway	Keflavik/Iceland	23.03.2017	11:20	23.03.2017	13:00	110	18463
-5	Keflavik/Iceland	Barcelona/Spain	12.03.2017	18:00	12.03.2017	22:00	100	63832
-6	Barcelona/Spain	Keflavik/Iceland	26.03.2017	04:10	26.03.2017	08:00	136	49842
-7	Keflavik/Iceland	Amsterdam/Holland	30.02.2017	15:10	30.02.2017	19:00	165	28384
-8	Keflavik/Iceland	Belfast/Ireland	11.03.2017	23:45	12.03.2017	01:45	120	18999
-9	Belfast/Ireland	Keflavik/Iceland	23.03.2017	10:00	23.03.2017	12:00	140	14999
-10	Keflavik/Iceland	Boston/USA	22.03.2017	11:40	22.03.2017	17:00	210	73848
-11	Boston/USA	Keflavik/Iceland	02.04.2017	12:00	02.04.2017	17:30	210	62566
-12	Keflavik/Iceland	Gautaborg/Sweden	16.03.2017	20:30	16.03.2017	23:00	150	32899
-13	Gautaborg/Sweden	Keflavik/Iceland	02.04.2017	11:00	02.04.2017	13:30	140	32899
-14	Keflavik/Iceland	London/UK	04.04.2017	11:00	04.04.2017	14:00	160	41900
-15	London/UK	Keflavik/Iceland	14.04.2017	19:30	14.04.2017	21:30	160	34999
-17	Reykjavik/Iceland	Akureyri/Iceland	19.02.2017	08:10	19.02.2017	09:00	50	17849
-18	Akureyri/Iceland	Reykjavik/Iceland	28.02.2017	12:10	28.02.2017	13:00	50	18383
-19	Keflavik/Iceland	Florida/USA	29.02.2017	12:00	29.02.2017	18:00	250	69270
-20	Florida/USA	Keflavik/Iceland	14.03.2017	22:00	15.02.2017	04:00	250	62845
-21	Keflavik/Iceland	Rome/Italy	08.03.2017	16:30	08.03.2017	20:30	175	38435
-22	Rome/Italy	Keflavik/Iceland	16.03.2017	12:30	16.03.2017	16:30	175	40684
-23	Keflavik/Iceland	Oslo/Norway	16.03.2017	14:30	16.03.2017	16:30	160	15063
-24	Oslo/Norway	Keflavik/Iceland	25.03.2017	11:00	25.03.2017	13:00	165	17485
-25	Keflavik/Iceland	Barcelona/Spain	11.03.2017	10:30	11.03.2017	14:30	140	57368
-26	Barcelona/Spain	Keflavik/Iceland	24.03.2017	09:30	24.03.2017	13:30	150	51647
-27	Keflavik/Iceland	Amsterdam/Holland	28.03.2017	09:30	28.03.2017	13:30	145	32568
-28	Amsterdam/Holland	Keflavik/Iceland	16.04.2017	10:00	16.03.2017	14:00	120	35627
-16	Amsterdam/Holland	Keflavik/Iceland	18.04.2017	15:10	18.04.2017	19:00	165	28384
-29	Keflavik/Iceland	Belfast/Ireland	13.03.2017	10:00	13.03.2017	12:00	125	15848
-30	Belfast/Ireland	Keflavik/Iceland	25.03.2017	09:00	25.03.2017	11:00	135	16949
-31	Keflavik/Iceland	Boston/USA	21.03.2017	08:00	21.03.2017	12:00	110	69373
-32	Boston/USA	Keflavik/Iceland	04.04.2017	09:00	04.04.2017	13:00	120	65839
-33	Keflavik/Iceland	Gautaborg/Sweden	18.03.2017	10:00	18.03.2017	12:30	100	29256
-34	Gautaborg/Sweden	Keflavik/Iceland	03.04.2017	16:00	03.04.2017	18:30	100	27948
-35	Keflavik/Iceland	London/UK	05.04.2017	17:00	05.04.2017	19:30	112	36237
-36	London/UK	Keflavik/Iceland	16.04.2017	20:00	16.04.2017	22:30	130	45748
-37	Reykjavik/Iceland	Akureyri/Iceland	17.02.2017	11:00	17.02.2017	12:00	45	15848
-38	Akureyri/Iceland	Reykjavik/Iceland	29.02.2017	20:00	29.02.2017	21:00	45	14948
-39	Keflavik/Iceland	Florida/USA	26.02.2017	06:00	26.02.2017	12:00	160	64748
-40	Florida/USA	Keflavik/Iceland	16.03.2017	20:00	17.03.2017	02:00	170	72838
+29	Keflavik	Belfast	13.03.2017	10:00	13.03.2017	12:00	125	15848
+13	Gautaborg	Keflavik	02.04.2017	11:00	02.04.2017	13:30	140	32899
+30	Belfast	Keflavik	25.03.2017	09:00	25.03.2017	11:00	135	16949
+14	Keflavik	London	04.04.2017	11:00	04.04.2017	14:00	160	41900
+31	Keflavik	Boston	21.03.2017	08:00	21.03.2017	12:00	110	69373
+15	London	Keflavik	14.04.2017	19:30	14.04.2017	21:30	160	34999
+32	Boston	Keflavik	04.04.2017	09:00	04.04.2017	13:00	120	65839
+16	Amsterdam	Keflavik	18.04.2017	15:10	18.04.2017	19:00	165	28384
+33	Keflavik	Gautaborg	18.03.2017	10:00	18.03.2017	12:30	100	29256
+17	Reykjavik	Akureyri	19.02.2017	08:10	19.02.2017	09:00	50	17849
+18	Akureyri	Reykjavik	28.02.2017	12:10	28.02.2017	13:00	50	18383
+34	Gautaborg	Keflavik	03.04.2017	16:00	03.04.2017	18:30	100	27948
+19	Keflavik	Florida	29.02.2017	12:00	29.02.2017	18:00	250	69270
+35	Keflavik	London	05.04.2017	17:00	05.04.2017	19:30	112	36237
+1	Keflavik	Rome	10.03.2017	17:30	10.03.2017	21:30	200	43986
+20	Florida	Keflavik	14.03.2017	22:00	15.02.2017	04:00	250	62845
+2	Rome	Keflavik	18.03.2017	06:20	18.03.2017	09:30	200	35748
+36	London	Keflavik	16.04.2017	20:00	16.04.2017	22:30	130	45748
+37	Reykjavik	Akureyri	17.02.2017	11:00	17.02.2017	12:00	45	15848
+3	Keflavik	Oslo	15.03.2017	14:00	15.03.2017	16:00	150	14462
+22	Rome	Keflavik	16.03.2017	12:30	16.03.2017	16:30	175	40684
+38	Akureyri	Reykjavik	29.02.2017	20:00	29.02.2017	21:00	45	14948
+4	Oslo	Keflavik	23.03.2017	11:20	23.03.2017	13:00	110	18463
+23	Keflavik	Oslo	16.03.2017	14:30	16.03.2017	16:30	160	15063
+5	Keflavik	Barcelona	12.03.2017	18:00	12.03.2017	22:00	100	63832
+6	Barcelona	Keflavik	26.03.2017	04:10	26.03.2017	08:00	136	49842
+24	Oslo	Keflavik	25.03.2017	11:00	25.03.2017	13:00	165	17485
+7	Keflavik	Amsterdam	30.02.2017	15:10	30.02.2017	19:00	165	28384
+39	Keflavik	Florida	26.02.2017	06:00	26.02.2017	12:00	160	64748
+8	Keflavik	Belfast	11.03.2017	23:45	12.03.2017	01:45	120	18999
+25	Keflavik	Barcelona	11.03.2017	10:30	11.03.2017	14:30	140	57368
+9	Belfast	Keflavik	23.03.2017	10:00	23.03.2017	12:00	140	14999
+10	Keflavik	Boston	22.03.2017	11:40	22.03.2017	17:00	210	73848
+26	Barcelona	Keflavik	24.03.2017	09:30	24.03.2017	13:30	150	51647
+11	Boston	Keflavik	02.04.2017	12:00	02.04.2017	17:30	210	62566
+40	Florida	Keflavik	16.03.2017	20:00	17.03.2017	02:00	170	72838
+12	Keflavik	Gautaborg	16.03.2017	20:30	16.03.2017	23:00	150	32899
+27	Keflavik	Amsterdam	28.03.2017	09:30	28.03.2017	13:30	145	32568
+28	Amsterdam	Keflavik	16.04.2017	10:00	16.03.2017	14:00	120	35627
+41	Keflavik	Tokyo	03.04.2017	16:30	04.04.2017	04:30	123	84890
+21	Keflavik	Rome	15.03.2017	17:30	15.03.2017	21:30	251	52525
 \.
-
-
---
--- Name: adminlogin adminlogin_pkey; Type: CONSTRAINT; Schema: public; Owner: gunnarmarhardarson
---
-
-ALTER TABLE ONLY adminlogin
-    ADD CONSTRAINT adminlogin_pkey PRIMARY KEY (id);
 
 
 --

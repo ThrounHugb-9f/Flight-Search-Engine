@@ -268,6 +268,14 @@ public class SearchUI extends JFrame {
 			}
 		});
 		contentPane.add(btnSearchForFlights);
+		
+		JSlider slider = new JSlider();
+		slider.setBounds(400, 147, 144, 29);
+		contentPane.add(slider);
+		
+		JButton btnSearchFlightsByPriceRange = new JButton("Search For Flights By Price Range");
+		btnSearchFlightsByPriceRange.setBounds(600, 150, 250, 30);
+		contentPane.add(btnSearchFlightsByPriceRange);
         
 	}
 	
