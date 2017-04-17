@@ -3,22 +3,13 @@ package user;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import admin.*;
-import booking.*;
-import search.*;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.*;
-
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import javax.swing.border.TitledBorder;
 
 public class AdminUI extends JFrame {
 	
-	// Breytur
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textFieldFlightNumber;
@@ -44,20 +35,9 @@ public class AdminUI extends JFrame {
 	private JButton btnDeleteFlight;
 	private JLabel lblDeleteFlightNumber;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminUI frame = new AdminUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	AdminController adminController = new AdminController();
+	DefaultTableModel modelFlights = new DefaultTableModel();
 	
-
 	public AdminUI() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +52,29 @@ public class AdminUI extends JFrame {
 		contentPane.add(table);
 		
 		JButton btnShowAllFlights = new JButton("Show all flights");
-		btnShowAllFlights.setBounds(410, 48, 97, 25);
+		btnShowAllFlights.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				while(modelFlights.getRowCount()>0) {
+					modelFlights.removeRow(0);
+				}
+				
+				// Getting information on all flights
+				AdminModel[] allFlights = adminController.getAllFlights();
+				
+				modelFlights.setColumnIdentifiers(new String[] {"Flightnumber", "Departure", "Destination", ""
+						+ "Departure Date", "Departure Time", "Arrival Date", "Arrival Time", ""
+								+ "Seats Available", "Price"});
+				for (AdminModel i : allFlights) {
+					modelFlights.addRow(new String[] {Integer.toString(i.getFlightnumber()), i.getDeparture(),
+							   i.getArrival(), i.getDeparturedate(), i.getDeparturetime(),
+							   i.getArrivaldate(), i.getArrivaltime(), Integer.toString(i.getSeats()),
+							   Integer.toString(i.getPrice())});
+				}
+				
+				table.setModel(modelFlights);
+			}
+		});
+		btnShowAllFlights.setBounds(410, 48, 132, 25);
 		contentPane.add(btnShowAllFlights);
 		
 		JSeparator separator = new JSeparator();
@@ -90,7 +92,7 @@ public class AdminUI extends JFrame {
 		textFieldDeparture.setColumns(10);
 		
 		JLabel lblDeparture = new JLabel("Flightnumber");
-		lblDeparture.setBounds(112, 507, 103, 16);
+		lblDeparture.setBounds(112, 507, 105, 16);
 		contentPane.add(lblDeparture);
 		
 		textFieldArrival = new JTextField();
@@ -99,7 +101,7 @@ public class AdminUI extends JFrame {
 		textFieldArrival.setColumns(10);
 		
 		JLabel lblArrival = new JLabel("Departure");
-		lblArrival.setBounds(286, 507, 97, 16);
+		lblArrival.setBounds(286, 507, 96, 16);
 		contentPane.add(lblArrival);
 		
 		JLabel lblDepartureTime = new JLabel("Arrival");
@@ -182,6 +184,11 @@ public class AdminUI extends JFrame {
 		textField.setBounds(112, 790, 116, 22);
 		contentPane.add(textField);
 		
+		btnDeleteFlight = new JButton("Delete");
+		btnDeleteFlight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnDeleteFlight.setBounds(700, 789, 123, 25);
 		contentPane.add(btnDeleteFlight);
 		
@@ -190,10 +197,5 @@ public class AdminUI extends JFrame {
 		lblDeleteFlightNumber.setBounds(682, 749, 189, 36);
 		contentPane.add(lblDeleteFlightNumber);
 		
-		btnDeleteFlight = new JButton("Delete");
-		btnDeleteFlight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 	}
 }

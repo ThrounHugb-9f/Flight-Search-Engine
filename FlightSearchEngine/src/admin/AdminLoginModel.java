@@ -1,48 +1,28 @@
-/*
 package admin;
 
-import java.sql.*;
-import admin.*;
-import booking.*;
-import user.*;
-import java.util.*;
-import search.*;
-
 public class AdminLoginModel {
-	private int idLogin;
 	private String username;
-	private int password;
+	private String password;
 	
-	// Constructor
-	public AdminLoginModel(int idLogin, String username,
-			int password) {
-		this.idLogin = idLogin;
+	public AdminLoginModel(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 	
-	public int getIdLogin() {
-		return idLogin;
-	}
-	
-	public void setIdLogin(int idLogin) {
-		this.idLogin = idLogin;
-	}
-	
-	public String getUsername() {
+	public String getUserName() {
 		return username;
 	}
 	
-	public void setUsername(String username) {
+	public void setUserName(String username) {
 		this.username = username;
 	}
 	
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
 	
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
+
 }
-*/

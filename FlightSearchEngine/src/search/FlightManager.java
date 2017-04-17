@@ -1,9 +1,7 @@
 package search;
 
+
 import java.sql.*;
-import admin.*;
-import booking.*;
-import user.*;
 import java.util.*;
 
 
@@ -170,30 +168,5 @@ public class FlightManager {
 		}
 		
 		return results;
-	}
-	
-	// Testing main class
-	public static void main (String[] args) throws Exception {
-		
-		FlightManager test = new FlightManager();
-		
-		// FlightModel[] flights = test.getFlightsByPriceRange(5500, 15000);
-		
-		String date = "30.02.2017";
-		
-		FlightModel[] flights = test.getFlightsByDate(date);
-		
-		for (FlightModel i : flights) {
-			System.out.print(i.getFlightnumber() + " ");
-			System.out.print(i.getDeparture() + " ");
-			System.out.print(i.getArrival() + " ");
-			System.out.print(i.getDeparturedate() + " ");
-			System.out.print(i.getDeparturetime() + " ");
-			System.out.print(i.getArrivaldate() + " ");
-			System.out.print(i.getArrivaltime() + " ");
-			System.out.print(i.getSeats() + " ");
-			System.out.println(i.getPrice());
-			System.out.println();
-		}
 	}
 }

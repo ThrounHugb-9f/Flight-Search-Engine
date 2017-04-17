@@ -3,30 +3,15 @@ package user;
 import java.awt.*;
 import javax.swing.*;
 import admin.*;
-import booking.*;
-import search.*;
-import java.awt.Window.Type;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class AdminLoginUI extends JFrame {
-	private final String url = "jdbc:postgresql://localhost:5432/fsdb";
-	private final String driver = "org.postgresql.Driver";
-	private final String userName = "gunnarmarhardarson";
-	private final String password = "abcd1234";
-	
 	private JTextField textFieldUserName;
 	private JPasswordField passwordField;
-	Connection con;
-	PreparedStatement ps;
-	ResultSet rs;
 	
-	//AdminLoginController adminLoginController = new AdminLoginController();
+	AdminLoginController adminLoginController = new AdminLoginController();
 
 	public AdminLoginUI() {
 		setBounds(new Rectangle(400, 190, 445, 230));
@@ -46,24 +31,14 @@ public class AdminLoginUI extends JFrame {
 				String textFieldValueUserName = getTextFieldUserName();
 				String textFieldValuePassword = getTextFieldPassword();
 				
-				try {
-					con = DriverManager.getConnection(url, userName, password);
-					ps = con.prepareStatement("SELECT * FROM adminlogin WHERE 'username' = ? AND 'password' = ?");
+				if (adminLoginController.checkUserAndPass(textFieldValueUserName, textFieldValuePassword) == true) {
+					AdminUI adminUI = new AdminUI();
+					adminUI.setVisible(true);
 					
-					ps.setString(1, textFieldValueUserName);
-					ps.setString(2, textFieldValuePassword);
-					rs = ps.executeQuery();
-					
-					if (rs.next()) {
-						JOptionPane.showMessageDialog(null, "Logged in");
-						AdminUI adminUI = new AdminUI();
-						adminUI.setVisible(true);
-					}
-					
-				} catch (Exception ex) {
+				}
+				else {
 					JOptionPane.showMessageDialog(null, "Error");
 				}
-				
 			}
 		});
 		btnLogIn.setBounds(317, 143, 97, 25);
