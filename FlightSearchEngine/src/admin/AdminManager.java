@@ -1,9 +1,6 @@
 package admin;
 
 import java.sql.*;
-import booking.*;
-import search.*;
-import user.*;
 import java.util.*;
 
 public class AdminManager {
@@ -142,46 +139,5 @@ public class AdminManager {
 		}
  		
 		return null;
-	}
-	
-	// Testing main class
-	public static void main (String[] args) throws Exception {
-			
-		AdminManager test = new AdminManager();
-		
-		//String departure = "Keflavik", arrival = "Rome", departDate = "15.03.2017", departTime = "17:30", arrivalDate = "15.03.2017", arrivalTime = "21:30";
-		//int seats = 251, price = 52525, flightnumber = 21;
-		
-		//test.updateFlight(departure, arrival, departDate, departTime, arrivalDate, arrivalTime, seats, price, flightnumber);
-		
-		
-		//int del = 41;
-		
-		//test.deleteFlight(del);
-		
-		//test.addNewFlight(41, "Keflavik", "Tokyo", "03.04.2017", "16:30", ""
-		//		+ "04.04.2017", "04:30", 123, 84890);
-			
-		//FlightModel[] flights = test.getFlightsByPriceRange(5500, 15000);
-			
-		//String date = "30.02.2017";
-		
-		/*
-		AdminModel[] flights = test.getAllFlights();
-			
-		for (AdminModel i : flights) {
-			System.out.print(i.getFlightnumber() + " ");
-			System.out.print(i.getDeparture() + " ");
-			System.out.print(i.getArrival() + " ");
-			System.out.print(i.getDeparturedate() + " ");
-			System.out.print(i.getDeparturetime() + " ");
-			System.out.print(i.getArrivaldate() + " ");
-			System.out.print(i.getArrivaltime() + " ");
-			System.out.print(i.getSeats() + " ");
-			System.out.println(i.getPrice());
-			System.out.println();
-		}
-		*/
-		System.out.println("Done!");
 	}
 }

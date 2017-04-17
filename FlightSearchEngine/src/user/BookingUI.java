@@ -2,9 +2,7 @@ package user;
 
 import java.awt.*;
 import javax.swing.*;
-import admin.*;
-import booking.*;
-import search.*;
+
 
 public class BookingUI extends JFrame {
 	
@@ -15,8 +13,7 @@ public class BookingUI extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	
-	// Breytur
-
+	// Constructor
 	public BookingUI() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

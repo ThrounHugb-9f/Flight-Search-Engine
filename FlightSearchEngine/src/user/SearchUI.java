@@ -6,17 +6,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import admin.*;
-import booking.*;
-import search.*;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.*;
-
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import javax.swing.border.TitledBorder;
 
 
 public class SearchUI extends JFrame {
@@ -129,8 +120,7 @@ public class SearchUI extends JFrame {
 		btnSearchForFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Refreshing table
-				while (modelDepart.getRowCount()>0)
-		          {
+				while (modelDepart.getRowCount()>0) {
 					modelDepart.removeRow(0);
 		          }
 				

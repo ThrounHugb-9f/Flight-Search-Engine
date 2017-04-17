@@ -1,26 +1,23 @@
-/*
 package admin;
 
-import java.sql.*;
-import admin.*;
-import booking.*;
-import user.*;
-import search.*;
-import java.util.*;
 
 public class AdminLoginController {
-	AdminLoginManager adminManager = new AdminLoginManager();
+	AdminLoginManager adminLoginManager = new AdminLoginManager();
 
 	public AdminLoginController() {
 		
 	}
 	
-	public AdminLoginModel[] checkUsernAndPassw(String usern, String passw) {
+	// Checking user and password
+	public boolean checkUserAndPass(String usern, String passw) {
 		
-		adminManager.checkUsernAndPassw(usern, passw);
-		
-		return null;
+		if(adminLoginManager.checkUserAndPass(usern, passw) == true) {
+			System.out.println("true");
+			return true;
+		}
+		else {
+			System.out.println("false");
+			return false;
+		}
 	}
-
 }
-*/

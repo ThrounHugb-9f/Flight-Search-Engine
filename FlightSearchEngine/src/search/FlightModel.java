@@ -1,11 +1,8 @@
 package search;
 
-import java.util.ArrayList;
+
 import java.util.Comparator;
 
-import admin.*;
-import booking.*;
-import user.*;
 
 public class FlightModel implements Comparator{
 	private int flightnumber;

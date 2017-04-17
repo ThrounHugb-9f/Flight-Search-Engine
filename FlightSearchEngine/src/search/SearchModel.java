@@ -1,8 +1,5 @@
 package search;
 
-import admin.*;
-import booking.*;
-import user.*;
 
 public class SearchModel {
 	private int maxPrice;

@@ -1,6 +1,5 @@
 package search;
 
-import java.util.*;
 
 public class SearchControllerTest {
 

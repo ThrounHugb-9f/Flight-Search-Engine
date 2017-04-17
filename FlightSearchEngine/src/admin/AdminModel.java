@@ -1,8 +1,5 @@
 package admin;
 
-import booking.*;
-import search.*;
-import user.*;
 
 public class AdminModel {
 	private int flightnumber;

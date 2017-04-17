@@ -1,12 +1,7 @@
 package search;
 
-import java.util.ArrayList;
-import java.io.IOException;
-import java.util.*;
 
-import admin.*;
-import booking.*;
-import user.*;
+import java.io.IOException;
 
 
 public class SearchController {

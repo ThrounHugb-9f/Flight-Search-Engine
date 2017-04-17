@@ -1,8 +1,5 @@
 package booking;
 
-import admin.*;
-import search.*;
-import user.*;
 
 public class BookingModel {
 	private int id;
