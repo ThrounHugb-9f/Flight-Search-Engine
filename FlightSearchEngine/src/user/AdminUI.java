@@ -31,7 +31,7 @@ public class AdminUI extends JFrame {
 	private JLabel lblPrice;
 	private JSeparator separator_1;
 	private JLabel label;
-	private JTextField textField;
+	private JTextField textFieldFlightNumberDelete;
 	private JButton btnDeleteFlight;
 	private JLabel lblDeleteFlightNumber;
 	
@@ -205,10 +205,10 @@ public class AdminUI extends JFrame {
 		label.setBounds(112, 607, 116, 16);
 		contentPane.add(label);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(112, 636, 116, 22);
-		contentPane.add(textField);
+		textFieldFlightNumberDelete = new JTextField();
+		textFieldFlightNumberDelete.setColumns(10);
+		textFieldFlightNumberDelete.setBounds(112, 636, 116, 22);
+		contentPane.add(textFieldFlightNumberDelete);
 		
 		// Delete a flight from database
 		btnDeleteFlight = new JButton("Delete");
@@ -216,10 +216,10 @@ public class AdminUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				// Get text value
-				String textFieldValueFlightNumber = getTextFieldFlightNumber();
+				String textFieldValueFlightNumberDelete = getTextFieldFlightNumberDelete();
 				
 				// Delete a flight from database
-				adminController.deleteFlight(Integer.parseInt(textFieldValueFlightNumber));
+				adminController.deleteFlight(Integer.parseInt(textFieldValueFlightNumberDelete));
 			}
 		});
 		btnDeleteFlight.setBounds(700, 663, 123, 41);
@@ -282,5 +282,10 @@ public class AdminUI extends JFrame {
 	public String getTextFieldPrice() {
 		String priceText = textFieldPrice.getText();
 		return priceText;
+	}
+	
+	public String getTextFieldFlightNumberDelete() {
+		String flightNumberDeleteText = textFieldFlightNumberDelete.getText();
+		return flightNumberDeleteText;
 	}
 }
