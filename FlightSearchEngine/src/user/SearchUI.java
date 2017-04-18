@@ -276,11 +276,12 @@ public class SearchUI extends JFrame {
         
 		
 		// Picking a flight
-		JButton btnPickFlight = new JButton("Pick Flight");
-		btnPickFlight.setBounds(30, 80, 250, 30);
+		JButton btnPickFlight = new JButton("Book Flight");
+		btnPickFlight.setBounds(30, 70, 250, 50);
 		btnPickFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Getting text values
+				
 				int textFieldValuePick = getTextFieldPick();
 				
 				FlightModel flight = searchController.pickFlight(textFieldValuePick);
@@ -314,7 +315,7 @@ public class SearchUI extends JFrame {
 				jTable_Display_Flights.setModel(modelFlights);
 			}
 		});
-		btnSearchForAllFlights.setBounds(30, 129, 250, 47);
+		btnSearchForAllFlights.setBounds(30, 140, 250, 50);
 		contentPane.add(btnSearchForAllFlights);
 	}
 	
