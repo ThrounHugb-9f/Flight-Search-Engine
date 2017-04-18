@@ -14,6 +14,13 @@ public class SearchController {
 		
 	}
 	
+	// Getting all flights
+	public FlightModel[] getAllFlights() {
+		flights = flightManager.getAllFlights();
+		
+		return flights;
+	}
+	
 	// Getting flights by departure	
 	public FlightModel[] getFlightsByDeparture(String depart) {
 		depart = depart.toLowerCase();

@@ -99,6 +99,7 @@ COPY bookings (id, name, kennitala, email, phonenumber, seatsreserved, flightnum
 1	Jón Jónsson	1202832629	john@email.com	5934346	3	26
 2	Helgi Sigurjónsson	1704693829	helgi@email.com	5636806	2	12
 3	Jóna Atladóttir	803927419	jona@email.com	8453673	1	2
+29	Hobo	92958230	hobo@bobo.com	393939	5	17
 \.
 
 
