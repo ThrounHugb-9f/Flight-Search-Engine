@@ -23,6 +23,7 @@ public class SearchUI extends JFrame {
 	private FlightModel[] flightsDepart;
 	private FlightModel[] flightsDest;
 	private FlightModel[] flightsDate;
+	private FlightModel[] flightsPrice;
 	private JLabel lblPriceRange;
 	
 	private BookingUI startBook;
@@ -32,6 +33,7 @@ public class SearchUI extends JFrame {
 	DefaultTableModel modelDepart = new DefaultTableModel();
 	DefaultTableModel modelDest = new DefaultTableModel();
 	DefaultTableModel modelDate = new DefaultTableModel();
+	DefaultTableModel modelPrice = new DefaultTableModel();
 	DefaultTableModel modelFlights = new DefaultTableModel();
 	private JScrollPane scrollPane;
 
@@ -225,6 +227,7 @@ public class SearchUI extends JFrame {
 		});
 		contentPane.add(btnSearchForFlights);
 		
+		// JSlider for min price
 		JSlider s01 = new JSlider(JSlider.HORIZONTAL, 0, 150000, 0);
 		s01.setMajorTickSpacing(10000);
 		s01.setPaintTicks(true);
@@ -242,8 +245,8 @@ public class SearchUI extends JFrame {
 		s01.setBounds(400, 150, 144, 29);
 		contentPane.add(s01);
 		
-	
-		JSlider s02 = new JSlider(JSlider.HORIZONTAL, 0, 150000, 0);
+		// JSlider for max price
+		JSlider s02 = new JSlider(JSlider.HORIZONTAL, 0, 150000, 150000);
 		s02.setMajorTickSpacing(10000);
 		s02.setPaintTicks(true);
 		getContentPane().add(s02);
@@ -257,15 +260,46 @@ public class SearchUI extends JFrame {
 			lblMaxPrice.setText("MAX price: " + value2);
 			}
 		});
-		s02.setBounds(400, 206, 144, 29);
+		s02.setBounds(400, 203, 144, 29);
 		contentPane.add(s02);
 		
+		// Getting flights by price range
 		JButton btnSearchFlightsByPriceRange = new JButton("Search For Flights By Price Range");
+		btnSearchFlightsByPriceRange.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int textFieldValueMin = s01.getValue();
+				int textFieldValueMax = s02.getValue();
+				
+				try {
+					// Refresh table
+					while (modelPrice.getRowCount() > 0) {
+						modelPrice.removeRow(0);
+					}
+					flightsPrice = searchController.getFlightsByPriceRange(textFieldValueMin, textFieldValueMax);
+					
+					// Setting data into table
+					modelPrice.setColumnIdentifiers(new String[] {"Flightnumber", "Departure", "Destination", ""
+							+ "Departure Date", "Departure Time", "Arrival Date", "Arrival Time", ""
+									+ "Seats Available", "Price"});
+					for (FlightModel i : flightsPrice) {
+						modelPrice.addRow(new String[] {Integer.toString(i.getFlightnumber()), i.getDeparture(),
+												   i.getArrival(), i.getDeparturedate(), i.getDeparturetime(),
+												   i.getArrivaldate(), i.getArrivaltime(), Integer.toString(i.getSeats()),
+												   Integer.toString(i.getPrice())});
+					}
+					
+					jTable_Display_Flights.setModel(modelPrice);
+					jTable_Display_Flights.setEnabled(false);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Error: min price value higher than max price");
+				}
+			}
+		});
 		btnSearchFlightsByPriceRange.setBounds(600, 150, 250, 30);
 		contentPane.add(btnSearchFlightsByPriceRange);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 223, 887, 300);
+		scrollPane.setBounds(6, 260, 887, 300);
 		contentPane.add(scrollPane);
 		
 		jTable_Display_Flights = new JTable();
@@ -281,7 +315,6 @@ public class SearchUI extends JFrame {
 		btnPickFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Getting text values
-				
 				int textFieldValuePick = getTextFieldPick();
 				
 				FlightModel flight = searchController.pickFlight(textFieldValuePick);
@@ -341,6 +374,8 @@ public class SearchUI extends JFrame {
 		int flightNumber = Integer.parseInt(pickText);
 		return flightNumber;
 	}
+	
+	
 }
 
 
