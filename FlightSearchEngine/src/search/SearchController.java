@@ -7,7 +7,6 @@ import java.io.IOException;
 public class SearchController {
 	FlightManager flightManager = new FlightManager();
 	private FlightModel[] flights;
-	private FlightModel[] newFlights;
 	
 	// Constructor
 	public SearchController() {
