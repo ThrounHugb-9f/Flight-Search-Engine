@@ -30,7 +30,7 @@ public class BookingUI extends JFrame {
 		bookingController = new BookingController(flight);
 		pickedFlight = flight;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 408, 482);
 		setTitle("Booking");
 		contentPane = new JPanel();
@@ -103,7 +103,7 @@ public class BookingUI extends JFrame {
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Get text values
-				int id = 29; // Þarf að breyta
+				int id = 29; // ï¿½arf aï¿½ breyta
 				String name = getTextFieldName();
 				int securityNr = getTextFieldSocialSec();
 				String email = getTextFieldMail();
