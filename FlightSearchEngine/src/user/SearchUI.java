@@ -16,12 +16,16 @@ public class SearchUI extends JFrame {
 	private JTextField textFieldDepart;
 	private JTextField textFieldDestination;
 	private JTextField textFieldDate;
+	private JTextField textFieldPick;
 	private JTable table;
 	private JTable jTable_Display_Flights;
 	private FlightModel[] flightsDepart;
 	private FlightModel[] flightsDest;
 	private FlightModel[] flightsDate;
 	private JLabel lblPriceRange;
+	
+	private BookingUI startBook;
+
 	
 	SearchController searchController = new SearchController();
 	DefaultTableModel modelDepart = new DefaultTableModel();
@@ -90,6 +94,16 @@ public class SearchUI extends JFrame {
 		lblDate.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		contentPane.add(lblDate);
 		
+		JLabel lblPickFlight = new JLabel("Enter Flightnumber:");
+		lblPickFlight.setBounds(30, 36, 89, 14);
+		lblPickFlight.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+		contentPane.add(lblPickFlight);
+		
+		textFieldPick = new JTextField();
+		textFieldPick.setBounds(120, 33, 144, 20);
+		contentPane.add(textFieldPick);
+		textFieldPick.setColumns(10);
+		
 		textFieldDepart = new JTextField();
 		textFieldDepart.setBounds(400, 33, 144, 20);
 		contentPane.add(textFieldDepart);
@@ -137,9 +151,13 @@ public class SearchUI extends JFrame {
 				}
 				
 				jTable_Display_Flights.setModel(modelDepart);
+				jTable_Display_Flights.setEnabled(false);
+				
 			}
+			
 		});
 		contentPane.add(btnSearchForFlightDepart);
+		
 		
 		// Searching for flights by their destination
 		JButton btnSearchForFlightByDestination = new JButton("Search For Flights By Destination");
@@ -168,6 +186,7 @@ public class SearchUI extends JFrame {
 				}
 				
 				jTable_Display_Flights.setModel(modelDest);
+				jTable_Display_Flights.setEnabled(false);
 			}
 		});
 		contentPane.add(btnSearchForFlightByDestination);
@@ -199,6 +218,7 @@ public class SearchUI extends JFrame {
 				}
 				
 				jTable_Display_Flights.setModel(modelDate);
+				jTable_Display_Flights.setEnabled(false);
 			}
 		});
 		contentPane.add(btnSearchForFlights);
@@ -218,9 +238,27 @@ public class SearchUI extends JFrame {
 		contentPane.add(scrollPane);
 		
 		jTable_Display_Flights = new JTable();
+		jTable_Display_Flights.setEnabled(false);
 		scrollPane.setViewportView(jTable_Display_Flights);
         
+		
+		// Picking a flight
+		JButton btnPickFlight = new JButton("Pick Flight");
+		btnPickFlight.setBounds(30, 80, 250, 30);
+		btnPickFlight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Getting text values
+				int textFieldValuePick = getTextFieldPick();
+				
+				FlightModel flight = searchController.pickFlight(textFieldValuePick);
+				
+				startBook = new BookingUI(flight);
+				startBook.setVisible(true);
+			}
+		});
+		contentPane.add(btnPickFlight);
 	}
+	
 	
 	public String getTextFieldDeparture() { 
 		String depText = textFieldDepart.getText(); 
@@ -235,6 +273,12 @@ public class SearchUI extends JFrame {
 	public String getTextFieldDate() {
 		String dateText = textFieldDate.getText();
 		return dateText;
+	}
+	
+	public int getTextFieldPick() {
+		String pickText = textFieldPick.getText();
+		int flightNumber = Integer.parseInt(pickText);
+		return flightNumber;
 	}
 }
 

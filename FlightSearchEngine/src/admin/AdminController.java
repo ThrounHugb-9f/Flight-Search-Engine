@@ -15,7 +15,6 @@ public class AdminController {
 	
 	// Getting all information on flights
 	public AdminModel[] getAllFlights() {
-		
 		flights = adminManager.getAllFlights();
 		
 		return flights;
