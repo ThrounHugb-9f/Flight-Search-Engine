@@ -5,9 +5,10 @@ import search.*;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 
 public class SearchUI extends JFrame {
@@ -224,11 +225,40 @@ public class SearchUI extends JFrame {
 		});
 		contentPane.add(btnSearchForFlights);
 		
-		JSlider slider = new JSlider();
-		slider.setMajorTickSpacing(5000);
-		slider.setMaximum(200000);
-		slider.setBounds(400, 147, 144, 29);
-		contentPane.add(slider);
+		JSlider s01 = new JSlider(JSlider.HORIZONTAL, 0, 150000, 0);
+		s01.setMajorTickSpacing(10000);
+		s01.setPaintTicks(true);
+		getContentPane().add(s01);
+		JLabel lblMinPrice = new JLabel("MIN price: 0");
+		lblMinPrice.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblMinPrice.setBounds(423, 181, 102, 14);
+		getContentPane().add(lblMinPrice);
+		s01.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+			int value = s01.getValue();
+			lblMinPrice.setText("MIN price: " + value);
+			}
+		});
+		s01.setBounds(400, 150, 144, 29);
+		contentPane.add(s01);
+		
+	
+		JSlider s02 = new JSlider(JSlider.HORIZONTAL, 0, 150000, 0);
+		s02.setMajorTickSpacing(10000);
+		s02.setPaintTicks(true);
+		getContentPane().add(s02);
+		JLabel lblMaxPrice = new JLabel("MAX price: 0");
+		lblMaxPrice.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblMaxPrice.setBounds(423, 234, 102, 14);
+		getContentPane().add(lblMaxPrice);
+		s02.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+			int value2 = s02.getValue();
+			lblMaxPrice.setText("MAX price: " + value2);
+			}
+		});
+		s02.setBounds(400, 206, 144, 29);
+		contentPane.add(s02);
 		
 		JButton btnSearchFlightsByPriceRange = new JButton("Search For Flights By Price Range");
 		btnSearchFlightsByPriceRange.setBounds(600, 150, 250, 30);
@@ -241,6 +271,8 @@ public class SearchUI extends JFrame {
 		jTable_Display_Flights = new JTable();
 		jTable_Display_Flights.setEnabled(false);
 		scrollPane.setViewportView(jTable_Display_Flights);
+		
+		
         
 		
 		// Picking a flight
@@ -285,6 +317,7 @@ public class SearchUI extends JFrame {
 		btnSearchForAllFlights.setBounds(30, 129, 250, 47);
 		contentPane.add(btnSearchForAllFlights);
 	}
+	
 	
 	
 	public String getTextFieldDeparture() { 
