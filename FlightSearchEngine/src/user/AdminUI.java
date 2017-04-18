@@ -22,7 +22,7 @@ public class AdminUI extends JFrame {
 	private JTextField textFieldSeats;
 	private JTextField textFieldPrice;
 	private JLabel lblInsertNewFlight;
-	private JButton InsertButton;
+	private JButton btnInsertFlight;
 	private JLabel lblArrivalDate;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
@@ -31,7 +31,7 @@ public class AdminUI extends JFrame {
 	private JLabel lblPrice;
 	private JSeparator separator_1;
 	private JLabel label;
-	private JTextField textField;
+	private JTextField textFieldFlightNumberDelete;
 	private JButton btnDeleteFlight;
 	private JLabel lblDeleteFlightNumber;
 	
@@ -141,9 +141,38 @@ public class AdminUI extends JFrame {
 		lblInsertNewFlight.setBounds(693, 390, 189, 36);
 		contentPane.add(lblInsertNewFlight);
 		
-		InsertButton = new JButton("Submit");
-		InsertButton.setBounds(700, 471, 123, 52);
-		contentPane.add(InsertButton);
+		
+		
+		
+		
+		
+		
+		
+		// Insert a new flight into database
+		btnInsertFlight = new JButton("Submit");
+		btnInsertFlight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Getting text values
+				String textFieldValueFlightNumber = getTextFieldFlightNumber();
+				String textFieldValueDeparture = getTextFieldDeparture();
+				String textFieldValueArrival = getTextFieldArrival();
+				String textFieldValueDepartureDate = getTextFieldDepartureDate();
+				String textFieldValueDepartureTime = getTextFieldDepartureTime();
+				String textFieldValueArrivalDate = getTextFieldArrivalDate();
+				String textFieldValueArrivalTime = getTextFieldArrivalTime();
+				String textFieldValueSeats = getTextFieldSeats();
+				String textFieldValuePrice = getTextFieldPrice();
+				
+				// Inserting a new flight
+				adminController.addNewFlight(Integer.parseInt(textFieldValueFlightNumber), textFieldValueDeparture,
+						textFieldValueArrival, textFieldValueDepartureDate, textFieldValueDepartureTime,
+						textFieldValueArrivalDate, textFieldValueArrivalTime, Integer.parseInt(textFieldValueSeats),
+						Integer.parseInt(textFieldValuePrice));
+			}
+		});
+		btnInsertFlight.setBounds(700, 471, 123, 52);
+		contentPane.add(btnInsertFlight);
 		
 		lblArrivalDate = new JLabel("Departure Date");
 		lblArrivalDate.setBounds(112, 439, 116, 16);
@@ -174,17 +203,24 @@ public class AdminUI extends JFrame {
 		contentPane.add(separator_1);
 		
 		label = new JLabel("Flightnumber");
-		label.setBounds(112, 607, 75, 16);
+		label.setBounds(112, 607, 116, 16);
 		contentPane.add(label);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(112, 636, 116, 22);
-		contentPane.add(textField);
+		textFieldFlightNumberDelete = new JTextField();
+		textFieldFlightNumberDelete.setColumns(10);
+		textFieldFlightNumberDelete.setBounds(112, 636, 116, 22);
+		contentPane.add(textFieldFlightNumberDelete);
 		
+		// Delete a flight from database
 		btnDeleteFlight = new JButton("Delete");
 		btnDeleteFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				// Get text value
+				String textFieldValueFlightNumberDelete = getTextFieldFlightNumberDelete();
+				
+				// Delete a flight from database
+				adminController.deleteFlight(Integer.parseInt(textFieldValueFlightNumberDelete));
 			}
 		});
 		btnDeleteFlight.setBounds(700, 663, 123, 41);
@@ -204,5 +240,55 @@ public class AdminUI extends JFrame {
 		
 		scrollPane.setViewportView(table);
 		
+	}
+	
+	public String getTextFieldFlightNumber() {
+		String flightnText = textFieldFlightNumber.getText();
+		return flightnText;
+	}
+	
+	public String getTextFieldDeparture() {
+		String deparText = textFieldDeparture.getText();
+		return deparText;
+	}
+	
+	public String getTextFieldArrival() {
+		String arriText = textFieldArrival.getText();
+		return arriText;
+	}
+	
+	public String getTextFieldDepartureDate() {
+		String deparDateText = textFieldDepartureDate.getText();
+		return deparDateText;
+	}
+	
+	public String getTextFieldDepartureTime() {
+		String deparTimeText = textFieldDepartureTime.getText();
+		return deparTimeText;
+	}
+	
+	public String getTextFieldArrivalDate() {
+		String arriDateText = textFieldArrivalDate.getText();
+		return arriDateText;
+	}
+	
+	public String getTextFieldArrivalTime() {
+		String arriTimeText = textFieldArrivalTime.getText();
+		return arriTimeText;
+	}
+	
+	public String getTextFieldSeats() {
+		String seatsText = textFieldSeats.getText();
+		return seatsText;
+	}
+	
+	public String getTextFieldPrice() {
+		String priceText = textFieldPrice.getText();
+		return priceText;
+	}
+	
+	public String getTextFieldFlightNumberDelete() {
+		String flightNumberDeleteText = textFieldFlightNumberDelete.getText();
+		return flightNumberDeleteText;
 	}
 }

@@ -15,7 +15,7 @@ public class FlightManager {
 	private final String driver = "org.postgresql.Driver";
 	private final String userName = "postgres";
 	private final String password = "villijons";
-
+  
 	// Constructor
 	public FlightManager() {
 

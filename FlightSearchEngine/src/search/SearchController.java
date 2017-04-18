@@ -16,7 +16,7 @@ public class SearchController {
 	
 	// Getting flights by departure	
 	public FlightModel[] getFlightsByDeparture(String depart) {
-		flights = new FlightModel[10];
+		depart = depart.toLowerCase();
 		
 		flights = flightManager.getFlightsByDeparture(depart);
 		
@@ -25,7 +25,7 @@ public class SearchController {
 	
 	// Getting fights by destination
 	public FlightModel[] getFlightsByDestination(String dest) {
-		flights = new FlightModel[10];
+		dest = dest.toLowerCase();
 		
 		flights = flightManager.getFlightsByDestination(dest);
 		
@@ -34,7 +34,7 @@ public class SearchController {
 	
 	// Getting flights by date
 	public FlightModel[] getFlightsByDate(String departime) {
-		flights = new FlightModel[10];
+		
 		
 		flights = flightManager.getFlightsByDate(departime);
 		
@@ -43,7 +43,6 @@ public class SearchController {
 	
 	// Getting flights by price range
 	public FlightModel[] getFlightsByPriceRange(int lower, int higher) throws IOException {
-		flights = new FlightModel[10];
 		
 		if (lower < 0 || lower > higher) throw new IOException("The value chosen for low is illeagal!");
 		
