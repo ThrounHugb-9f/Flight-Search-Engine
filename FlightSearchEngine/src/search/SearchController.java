@@ -21,8 +21,9 @@ public class SearchController {
 	}
 	
 	// Getting flights by departure	
-	public FlightModel[] getFlightsByDeparture(String depart) {
+	public FlightModel[] getFlightsByDeparture(String depart) throws IOException {
 		depart = depart.toLowerCase();
+		if(depart.isEmpty()) throw new IOException("The value chosen for departure is illeagal!");
 		
 		flights = flightManager.getFlightsByDeparture(depart);
 		
@@ -30,8 +31,9 @@ public class SearchController {
 	}
 	
 	// Getting fights by destination
-	public FlightModel[] getFlightsByDestination(String dest) {
+	public FlightModel[] getFlightsByDestination(String dest) throws IOException {
 		dest = dest.toLowerCase();
+		if(dest.isEmpty()) throw new IOException("The value chosen for destination is illeagal!");
 		
 		flights = flightManager.getFlightsByDestination(dest);
 		
@@ -39,8 +41,8 @@ public class SearchController {
 	}
 	
 	// Getting flights by date
-	public FlightModel[] getFlightsByDate(String departime) {
-		
+	public FlightModel[] getFlightsByDate(String departime) throws IOException {
+		if(departime.isEmpty()) throw new IOException("The value chosen for destination is illeagal!");
 		
 		flights = flightManager.getFlightsByDate(departime);
 		
@@ -57,22 +59,12 @@ public class SearchController {
 		return flights;
 	}
 	
-	public FlightModel pickFlight(int flightnumber) {
+	public FlightModel pickFlight(int flightnumber) throws IOException {
+		if(Integer.toString(flightnumber).isEmpty()) throw new IOException("The value chosen for flightnumber is illeagal!");
+
 		return flightManager.pickFlight(flightnumber);
 	}
 	
-	/*
-	public FlightModel[] orderByPrice() {
-		
-		Collections.sort(flights, new Comparator<FlightModel>() {
-			@Override public int compare(FlightModel p1, FlightModel p2) {
-				return p1.getPrice() - p2.getPrice(); //Orders in ascending order
-			}
-		});
-		
-		return flights;
-	}
-	*/
 	
 	public static void main (String[] args) throws Exception {
 		SearchController test = new SearchController();

@@ -150,22 +150,26 @@ public class SearchUI extends JFrame {
 				// Getting text values
 				String textFieldValueDepart = getTextFieldDeparture();
 				
-				flightsDepart = searchController.getFlightsByDeparture(textFieldValueDepart);
-				
-				// Setting data into table
-				modelDepart.setColumnIdentifiers(new String[] {"Flightnumber", "Departure", "Destination", ""
-						+ "Departure Date", "Departure Time", "Arrival Date", "Arrival Time", ""
-								+ "Seats Available", "Price"});
-				for (FlightModel i : flightsDepart) {
-					modelDepart.addRow(new String[] {Integer.toString(i.getFlightnumber()), i.getDeparture(),
-											   i.getArrival(), i.getDeparturedate(), i.getDeparturetime(),
-											   i.getArrivaldate(), i.getArrivaltime(), Integer.toString(i.getSeats()),
-											   Integer.toString(i.getPrice())});
+				try {
+					flightsDepart = searchController.getFlightsByDeparture(textFieldValueDepart);
+					
+					// Setting data into table
+					modelDepart.setColumnIdentifiers(new String[] {"Flightnumber", "Departure", "Destination", ""
+							+ "Departure Date", "Departure Time", "Arrival Date", "Arrival Time", ""
+									+ "Seats Available", "Price"});
+					for (FlightModel i : flightsDepart) {
+						modelDepart.addRow(new String[] {Integer.toString(i.getFlightnumber()), i.getDeparture(),
+												   i.getArrival(), i.getDeparturedate(), i.getDeparturetime(),
+												   i.getArrivaldate(), i.getArrivaltime(), Integer.toString(i.getSeats()),
+												   Integer.toString(i.getPrice())});
+					}
+					
+					jTable_Display_Flights.setModel(modelDepart);
+					jTable_Display_Flights.setEnabled(false);
+					
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Error: Departure text field cannot be empty");
 				}
-				
-				jTable_Display_Flights.setModel(modelDepart);
-				jTable_Display_Flights.setEnabled(false);
-				
 			}
 			
 		});
@@ -185,21 +189,26 @@ public class SearchUI extends JFrame {
 				// Getting text values
 				String textFieldValueDest = getTextFieldDestination();
 				
-				flightsDest = searchController.getFlightsByDestination(textFieldValueDest);
-				
-				// Setting data into table
-				modelDest.setColumnIdentifiers(new String[] {"Flightnumber", "Departure", "Destination", ""
-						+ "Departure Date", "Departure Time", "Arrival Date", "Arrival Time", ""
-								+ "Seats Available", "Price"});
-				for (FlightModel i : flightsDest) {
-					modelDest.addRow(new String[] {Integer.toString(i.getFlightnumber()), i.getDeparture(),
-											   i.getArrival(), i.getDeparturedate(), i.getDeparturetime(),
-											   i.getArrivaldate(), i.getArrivaltime(), Integer.toString(i.getSeats()),
-											   Integer.toString(i.getPrice())});
+				try {
+					flightsDest = searchController.getFlightsByDestination(textFieldValueDest);
+					
+					// Setting data into table
+					modelDest.setColumnIdentifiers(new String[] {"Flightnumber", "Departure", "Destination", ""
+							+ "Departure Date", "Departure Time", "Arrival Date", "Arrival Time", ""
+									+ "Seats Available", "Price"});
+					for (FlightModel i : flightsDest) {
+						modelDest.addRow(new String[] {Integer.toString(i.getFlightnumber()), i.getDeparture(),
+												   i.getArrival(), i.getDeparturedate(), i.getDeparturetime(),
+												   i.getArrivaldate(), i.getArrivaltime(), Integer.toString(i.getSeats()),
+												   Integer.toString(i.getPrice())});
+					}
+					
+					jTable_Display_Flights.setModel(modelDest);
+					jTable_Display_Flights.setEnabled(false);
+					
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Error: Destination text field cannot be empty");
 				}
-				
-				jTable_Display_Flights.setModel(modelDest);
-				jTable_Display_Flights.setEnabled(false);
 			}
 		});
 		contentPane.add(btnSearchForFlightByDestination);
@@ -217,21 +226,25 @@ public class SearchUI extends JFrame {
 				// Getting text values
 				String textFieldValueDate = getTextFieldDate();
 				
-				flightsDate = searchController.getFlightsByDate(textFieldValueDate);
-				
-				// Setting data into table
-				modelDate.setColumnIdentifiers(new String[] {"Flightnumber", "Departure", "Destination", ""
-						+ "Departure Date", "Departure Time", "Arrival Date", "Arrival Time", ""
-								+ "Seats Available", "Price"});
-				for (FlightModel i : flightsDate) {
-					modelDate.addRow(new String[] {Integer.toString(i.getFlightnumber()), i.getDeparture(),
-											   i.getArrival(), i.getDeparturedate(), i.getDeparturetime(),
-											   i.getArrivaldate(), i.getArrivaltime(), Integer.toString(i.getSeats()),
-											   Integer.toString(i.getPrice())});
+				try {
+					flightsDate = searchController.getFlightsByDate(textFieldValueDate);
+					
+					// Setting data into table
+					modelDate.setColumnIdentifiers(new String[] {"Flightnumber", "Departure", "Destination", ""
+							+ "Departure Date", "Departure Time", "Arrival Date", "Arrival Time", ""
+									+ "Seats Available", "Price"});
+					for (FlightModel i : flightsDate) {
+						modelDate.addRow(new String[] {Integer.toString(i.getFlightnumber()), i.getDeparture(),
+												   i.getArrival(), i.getDeparturedate(), i.getDeparturetime(),
+												   i.getArrivaldate(), i.getArrivaltime(), Integer.toString(i.getSeats()),
+												   Integer.toString(i.getPrice())});
+					}
+					
+					jTable_Display_Flights.setModel(modelDate);
+					jTable_Display_Flights.setEnabled(false);
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Error: Date text field cannot be empty");
 				}
-				
-				jTable_Display_Flights.setModel(modelDate);
-				jTable_Display_Flights.setEnabled(false);
 			}
 		});
 		contentPane.add(btnSearchForFlights);
@@ -326,10 +339,14 @@ public class SearchUI extends JFrame {
 				// Getting text values
 				int textFieldValuePick = getTextFieldPick();
 				
-				FlightModel flight = searchController.pickFlight(textFieldValuePick);
-				
-				startBook = new BookingUI(flight);
-				startBook.setVisible(true);
+				try {
+					FlightModel flight = searchController.pickFlight(textFieldValuePick);
+					
+					startBook = new BookingUI(flight);
+					startBook.setVisible(true);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Error: Cannot be empty when booking a flight");
+				}
 			}
 		});
 		contentPane.add(btnPickFlight);
