@@ -16,6 +16,7 @@ public class SearchController {
 	
 	// Getting flights by departure	
 	public FlightModel[] getFlightsByDeparture(String depart) {
+		depart = depart.toLowerCase();
 		
 		flights = flightManager.getFlightsByDeparture(depart);
 		
@@ -24,6 +25,7 @@ public class SearchController {
 	
 	// Getting fights by destination
 	public FlightModel[] getFlightsByDestination(String dest) {
+		dest = dest.toLowerCase();
 		
 		flights = flightManager.getFlightsByDestination(dest);
 		
@@ -32,6 +34,7 @@ public class SearchController {
 	
 	// Getting flights by date
 	public FlightModel[] getFlightsByDate(String departime) {
+		
 		
 		flights = flightManager.getFlightsByDate(departime);
 		
