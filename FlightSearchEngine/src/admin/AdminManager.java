@@ -9,8 +9,8 @@ public class AdminManager {
 	Connection con = null;
 	private final String url = "jdbc:postgresql://localhost:5432/fsdb";
 	private final String driver = "org.postgresql.Driver";
-	private final String userName = "gunnarmarhardarson";
-	private final String password = "abcd1234";
+	private final String userName = "postgres";
+	private final String password = "villijons";
 
 	// Constructor
 	public AdminManager() {
