@@ -4,6 +4,7 @@ package search;
 import java.sql.*;
 import java.util.*;
 
+import admin.AdminModel;
 import booking.BookingController;
 
 
@@ -13,8 +14,8 @@ public class FlightManager {
 	Connection con;
 	private final String url = "jdbc:postgresql://localhost:5432/fsdb";
 	private final String driver = "org.postgresql.Driver";
-	private final String userName = "postgres";
-	private final String password = "villijons";
+	private final String userName = "gunnarmarhardarson";
+	private final String password = "abcd1234";
   
 	// Constructor
 	public FlightManager() {
@@ -34,6 +35,39 @@ public class FlightManager {
 		}
 		return con;
 	}
+	
+	// Get all information on flights
+		public FlightModel[] getAllFlights() {
+			ArrayList<FlightModel> flights = new ArrayList<FlightModel>();
+			try {
+				Connection con = DriverManager.getConnection(url, userName, password);
+				PreparedStatement ps = con.prepareStatement("SELECT * FROM flightdata");
+				ResultSet rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					FlightModel tmp = new FlightModel(rs.getInt("flightnumber"),
+							  						  rs.getString("departure"),
+							  						  rs.getString("arrival"),
+							  						  rs.getString("departuredate"),
+							  						  rs.getString("departuretime"),
+							  						  rs.getString("arrivaldate"),
+							  						  rs.getString("arrivaltime"),
+							  						  rs.getInt("seats"),
+							  						  rs.getInt("price"));
+					flights.add(tmp);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			FlightModel[] results = new FlightModel[flights.size()];
+			
+			for(int i = 0; i < flights.size(); i++) {
+				results[i] = flights.get(i);
+			}
+			
+			return results;
+		}
 
 	// Getting all data for flights where departing from
 	public FlightModel[] getFlightsByDeparture(String depart) {

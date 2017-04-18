@@ -31,6 +31,7 @@ public class SearchUI extends JFrame {
 	DefaultTableModel modelDepart = new DefaultTableModel();
 	DefaultTableModel modelDest = new DefaultTableModel();
 	DefaultTableModel modelDate = new DefaultTableModel();
+	DefaultTableModel modelFlights = new DefaultTableModel();
 	private JScrollPane scrollPane;
 
 	/**
@@ -257,6 +258,32 @@ public class SearchUI extends JFrame {
 			}
 		});
 		contentPane.add(btnPickFlight);
+		
+		JButton btnSearchForAllFlights = new JButton("Show All Flights");
+		btnSearchForAllFlights.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				while(modelFlights.getRowCount() > 0) {
+					modelFlights.removeRow(0);
+				}
+				
+				// Getting information on all flights
+				FlightModel[] allFlights = searchController.getAllFlights();
+				
+				modelFlights.setColumnIdentifiers(new String[] {"Flightnumber", "Departure", "Destination", ""
+						+ "Departure Date", "Departure Time", "Arrival Date", "Arrival Time", ""
+								+ "Seats Available", "Price"});
+				for (FlightModel i : allFlights) {
+					modelFlights.addRow(new String[] {Integer.toString(i.getFlightnumber()), i.getDeparture(),
+							   i.getArrival(), i.getDeparturedate(), i.getDeparturetime(),
+							   i.getArrivaldate(), i.getArrivaltime(), Integer.toString(i.getSeats()),
+							   Integer.toString(i.getPrice())});
+				}
+				
+				jTable_Display_Flights.setModel(modelFlights);
+			}
+		});
+		btnSearchForAllFlights.setBounds(30, 129, 250, 47);
+		contentPane.add(btnSearchForAllFlights);
 	}
 	
 	
