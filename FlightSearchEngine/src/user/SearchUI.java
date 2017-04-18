@@ -23,6 +23,7 @@ public class SearchUI extends JFrame {
 	private FlightModel[] flightsDate;
 	private JLabel lblPriceRange;
 	
+	
 	SearchController searchController = new SearchController();
 	DefaultTableModel modelDepart = new DefaultTableModel();
 	DefaultTableModel modelDest = new DefaultTableModel();
@@ -137,9 +138,13 @@ public class SearchUI extends JFrame {
 				}
 				
 				jTable_Display_Flights.setModel(modelDepart);
+				jTable_Display_Flights.setEnabled(false);
+				
 			}
+			
 		});
 		contentPane.add(btnSearchForFlightDepart);
+		
 		
 		// Searching for flights by their destination
 		JButton btnSearchForFlightByDestination = new JButton("Search For Flights By Destination");
@@ -168,6 +173,7 @@ public class SearchUI extends JFrame {
 				}
 				
 				jTable_Display_Flights.setModel(modelDest);
+				jTable_Display_Flights.setEnabled(false);
 			}
 		});
 		contentPane.add(btnSearchForFlightByDestination);
@@ -199,6 +205,7 @@ public class SearchUI extends JFrame {
 				}
 				
 				jTable_Display_Flights.setModel(modelDate);
+				jTable_Display_Flights.setEnabled(false);
 			}
 		});
 		contentPane.add(btnSearchForFlights);
@@ -216,6 +223,7 @@ public class SearchUI extends JFrame {
 		contentPane.add(scrollPane);
 		
 		jTable_Display_Flights = new JTable();
+		jTable_Display_Flights.setEnabled(false);
 		scrollPane.setViewportView(jTable_Display_Flights);
         
 	}

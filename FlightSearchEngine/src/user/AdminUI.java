@@ -69,6 +69,7 @@ public class AdminUI extends JFrame {
 				}
 				
 				table.setModel(modelFlights);
+				
 			}
 		});
 		btnShowAllFlights.setBounds(410, 48, 132, 25);
@@ -199,6 +200,8 @@ public class AdminUI extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setEnabled(false);
+		
 		scrollPane.setViewportView(table);
 		
 	}
