@@ -57,6 +57,7 @@ public class SearchUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public SearchUI() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +70,7 @@ public class SearchUI extends JFrame {
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 
-		JMenuItem mntmLogInAs = new JMenuItem("log in as admin");
+		JMenuItem mntmLogInAs = new JMenuItem("Log in as admin");
 		mntmLogInAs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -78,7 +79,15 @@ public class SearchUI extends JFrame {
 			}
 		});
 		
+		JMenuItem quit = new JMenuItem("Exit");
+		quit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		
 		mnFile.add(mntmLogInAs);
+		mnFile.add(quit);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
