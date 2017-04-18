@@ -65,4 +65,33 @@ public class BookingManager {
 		}
 		*/
 	}
+	
+	// Add a booking to the database
+	public void addNewBooking(BookingModel booking) {
+		
+		try {
+			Connection con = DriverManager.getConnection(url, userName, password);
+			PreparedStatement ps = con.prepareStatement("INSERT INTO bookings VALUES("
+					+ "?, ?, ?, ?, ?, ?, ?)");
+			
+			ps.setInt(1, booking.getId());
+			ps.setString(2, booking.getName());
+			ps.setInt(3, booking.getKennitala());
+			ps.setString(4, booking.getEmail());
+			ps.setInt(5, booking.getPhonenumber());
+			ps.setInt(6, booking.getSeatsreserved());
+			ps.setInt(7, booking.getFlightnumber());
+			
+			// execute the prepared statement insert
+			ps.executeUpdate();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int checkId() {
+		
+		return 0;
+	}
 }

@@ -1,20 +1,25 @@
 package user;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 import booking.BookingController;
+import booking.BookingManager;
+import booking.BookingModel;
 import search.FlightModel;
 
 
 public class BookingUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JSpinner seats;
+	private JTextField textFieldSocialSec;
+	private JTextField textFieldName;
+	private JTextField textFieldMail;
+	private JTextField textFieldPhone;
 
 	private FlightModel pickedFlight;
 	
@@ -36,18 +41,13 @@ public class BookingUI extends JFrame {
 		lblName.setBounds(12, 201, 56, 16);
 		contentPane.add(lblName);
 
-		textField = new JTextField();
-		textField.setBounds(123, 80, 97, 22);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JLabel flightNr = new JLabel(" " + flight.getFlightnumber());
+		flightNr.setBounds(123, 80, 97, 22);
+		contentPane.add(flightNr);
 
 		JLabel lblNewLabel = new JLabel("Flight Nr.");
 		lblNewLabel.setBounds(12, 83, 56, 16);
 		contentPane.add(lblNewLabel);
-
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(281, 401, 97, 25);
-		contentPane.add(btnSubmit);
 
 		JLabel lblKe = new JLabel("Social security Nr.");
 		lblKe.setBounds(12, 246, 119, 16);
@@ -66,20 +66,20 @@ public class BookingUI extends JFrame {
 		lblBookYourFlight.setBounds(113, 13, 204, 30);
 		contentPane.add(lblBookYourFlight);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(123, 243, 194, 22);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textFieldSocialSec = new JTextField();
+		textFieldSocialSec.setBounds(123, 243, 194, 22);
+		contentPane.add(textFieldSocialSec);
+		textFieldSocialSec.setColumns(10);
 
-		textField_2 = new JTextField();
-		textField_2.setBounds(123, 198, 195, 22);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		textFieldName= new JTextField();
+		textFieldName.setBounds(123, 198, 195, 22);
+		contentPane.add(textFieldName);
+		textFieldName.setColumns(10);
 
-		textField_3 = new JTextField();
-		textField_3.setBounds(123, 294, 195, 22);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		textFieldMail = new JTextField();
+		textFieldMail.setBounds(123, 294, 195, 22);
+		contentPane.add(textFieldMail);
+		textFieldMail.setColumns(10);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 167, 390, 2);
@@ -89,16 +89,63 @@ public class BookingUI extends JFrame {
 		lblSeats.setBounds(12, 129, 56, 16);
 		contentPane.add(lblSeats);
 
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(123, 123, 48, 22);
-		contentPane.add(spinner);
+		seats = new JSpinner();
+		seats.setBounds(123, 123, 48, 22);
+		contentPane.add(seats);
 
-		textField_4 = new JTextField();
-		textField_4.setBounds(123, 341, 195, 22);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		textFieldPhone = new JTextField();
+		textFieldPhone.setBounds(123, 341, 195, 22);
+		contentPane.add(textFieldPhone);
+		textFieldPhone.setColumns(10);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(281, 401, 97, 25);
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Get text values
+				int id = 29; // Þarf að breyta
+				String name = getTextFieldName();
+				int securityNr = getTextFieldSocialSec();
+				String email = getTextFieldMail();
+				int phone = getTextFieldPhone();
+				int reservedSeats = getNumSeats();
+				int flightNumber = flight.getFlightnumber();
+				
+				BookingModel book = new BookingModel(id, name,
+							securityNr, email, phone, reservedSeats,
+							flightNumber);
+				
+				BookingController bookFlight = new BookingController(book);
+				
+				bookFlight.addNewBooking();
+				
+			}
+		});
+		contentPane.add(btnSubmit);
 	}
 	
-	public void bookingUI() {
+	public int getTextFieldSocialSec() {
+		int sn = Integer.parseInt(textFieldSocialSec.getText());
+		return sn;
+	}
+	
+	public String getTextFieldName() {
+		String name = textFieldName.getText();
+		return name;
+	}
+	
+	public String getTextFieldMail() {
+		String mail = textFieldMail.getText();
+		return mail;
+	}
+	
+	public int getTextFieldPhone() {
+		int phone = Integer.parseInt(textFieldPhone.getText());
+		return phone;
+	}
+	
+	public int getNumSeats() {
+		int numSeats = (Integer) seats.getValue();
+		return numSeats;
 	}
 }
