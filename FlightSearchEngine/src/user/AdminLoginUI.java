@@ -35,14 +35,22 @@ public class AdminLoginUI extends JFrame {
 					AdminUI adminUI = new AdminUI();
 					adminUI.setVisible(true);
 					JOptionPane.showMessageDialog(null, "Logged in as Admin");
+					setVisible(false);
+					
+					
+				
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Error");
 				}
+				
+				
 			}
+
 		});
 		btnLogIn.setBounds(317, 143, 97, 25);
 		getContentPane().add(btnLogIn);
+		
 		
 		textFieldUserName = new JTextField();
 		textFieldUserName.setBounds(127, 43, 220, 22);
