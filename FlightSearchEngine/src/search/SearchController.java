@@ -52,6 +52,10 @@ public class SearchController {
 		return flights;
 	}
 	
+	public FlightModel pickFlight(int flightnumber) {
+		return flightManager.pickFlight(flightnumber);
+	}
+	
 	/*
 	public FlightModel[] orderByPrice() {
 		

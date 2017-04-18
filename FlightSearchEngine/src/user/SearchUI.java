@@ -16,6 +16,7 @@ public class SearchUI extends JFrame {
 	private JTextField textFieldDepart;
 	private JTextField textFieldDestination;
 	private JTextField textFieldDate;
+	private JTextField textFieldPick;
 	private JTable table;
 	private JTable jTable_Display_Flights;
 	private FlightModel[] flightsDepart;
@@ -31,6 +32,8 @@ public class SearchUI extends JFrame {
 	private JLabel lblSeats;
 	private JLabel lblPrice;
 	private JLabel lblPriceRange;
+	
+	private BookingUI startBook;
 	
 	SearchController searchController = new SearchController();
 	DefaultTableModel modelDepart = new DefaultTableModel();
@@ -97,6 +100,16 @@ public class SearchUI extends JFrame {
 		lblDate.setBounds(300, 118, 89, 14);
 		lblDate.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		contentPane.add(lblDate);
+		
+		JLabel lblPickFlight = new JLabel("Enter Flightnumber:");
+		lblPickFlight.setBounds(30, 36, 89, 14);
+		lblPickFlight.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+		contentPane.add(lblPickFlight);
+		
+		textFieldPick = new JTextField();
+		textFieldPick.setBounds(120, 33, 144, 20);
+		contentPane.add(textFieldPick);
+		textFieldPick.setColumns(10);
 		
 		textFieldDepart = new JTextField();
 		textFieldDepart.setBounds(400, 33, 144, 20);
@@ -277,7 +290,24 @@ public class SearchUI extends JFrame {
 		btnSearchFlightsByPriceRange.setBounds(600, 150, 250, 30);
 		contentPane.add(btnSearchFlightsByPriceRange);
         
+		
+		// Picking a flight
+		JButton btnPickFlight = new JButton("Pick Flight");
+		btnPickFlight.setBounds(30, 80, 250, 30);
+		btnPickFlight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Getting text values
+				int textFieldValuePick = getTextFieldPick();
+				
+				FlightModel flight = searchController.pickFlight(textFieldValuePick);
+				
+				startBook = new BookingUI(flight);
+				startBook.setVisible(true);
+			}
+		});
+		contentPane.add(btnPickFlight);
 	}
+	
 	
 	public String getTextFieldDeparture() { 
 		String depText = textFieldDepart.getText(); 
@@ -292,6 +322,12 @@ public class SearchUI extends JFrame {
 	public String getTextFieldDate() {
 		String dateText = textFieldDate.getText();
 		return dateText;
+	}
+	
+	public int getTextFieldPick() {
+		String pickText = textFieldPick.getText();
+		int flightNumber = Integer.parseInt(pickText);
+		return flightNumber;
 	}
 }
 
