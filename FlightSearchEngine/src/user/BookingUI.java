@@ -10,32 +10,65 @@ import booking.BookingController;
 import booking.BookingManager;
 import booking.BookingModel;
 import search.FlightModel;
+import search.Seats;
 
 
 public class BookingUI extends JFrame {
 
 	private JPanel contentPane;
-	private JSpinner seats;
+	private JSpinner eSeats;
+	private JSpinner fSeats;
 	private JTextField textFieldSocialSec;
 	private JTextField textFieldName;
 	private JTextField textFieldMail;
 	private JTextField textFieldPhone;
 
 	private FlightModel pickedFlight;
-	
+	private int avalibleSeats;
+	private int economy;
+	private int firstClass;
+
 	BookingController bookingController;
 
 	// Constructor
 	public BookingUI(FlightModel flight) {
 		bookingController = new BookingController(flight);
 		pickedFlight = flight;
-		
+
+		avalibleSeats = flight.getSeatInfo().getAvalible();
+		economy = flight.getSeatInfo().getEconomyClass();
+		firstClass = flight.getSeatInfo().getFirstClass();
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 408, 482);
 		setTitle("Booking");
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		JLabel lblAvalible = new JLabel("Avalible seats:");
+		lblAvalible.setBounds(200, 83, 56, 16);
+		contentPane.add(lblAvalible);
+
+		JLabel lblAvalibleNr = new JLabel(" " + avalibleSeats);
+		lblAvalibleNr.setBounds(280, 83, 56, 16);
+		contentPane.add(lblAvalibleNr);
+
+		JLabel lblEconomy = new JLabel("Economy:");
+		lblEconomy.setBounds(200, 103, 56, 16);
+		contentPane.add(lblEconomy);
+
+		JLabel lblEconomyNr = new JLabel(" " + economy);
+		lblEconomyNr.setBounds(280, 103, 56, 16);
+		contentPane.add(lblEconomyNr);
+
+		JLabel lblFirstClass = new JLabel("First Class:");
+		lblFirstClass.setBounds(200, 123, 56, 16);
+		contentPane.add(lblFirstClass);
+
+		JLabel lblFirstClassNr = new JLabel(" " + firstClass);
+		lblFirstClassNr.setBounds(280, 123, 56, 16);
+		contentPane.add(lblFirstClassNr);
 
 		JLabel lblName = new JLabel("Name");
 		lblName.setBounds(12, 201, 56, 16);
@@ -85,67 +118,89 @@ public class BookingUI extends JFrame {
 		separator.setBounds(0, 167, 390, 2);
 		contentPane.add(separator);
 
-		JLabel lblSeats = new JLabel("Seats");
-		lblSeats.setBounds(12, 129, 56, 16);
-		contentPane.add(lblSeats);
+		JLabel lblESeats = new JLabel("Economy Seats");
+		lblESeats.setBounds(12, 119, 56, 16);
+		contentPane.add(lblESeats);
 
-		seats = new JSpinner();
-		seats.setBounds(123, 123, 48, 22);
-		contentPane.add(seats);
+		JLabel lblFSeats = new JLabel("First Class Seats");
+		lblFSeats.setBounds(12, 139, 56, 16);
+		contentPane.add(lblFSeats);
+
+		eSeats = new JSpinner(new SpinnerNumberModel(0,0,economy, 1));
+		eSeats.setBounds(123, 113, 48, 22);
+		contentPane.add(eSeats);
+
+		fSeats = new JSpinner(new SpinnerNumberModel(0,0,firstClass, 1));
+		fSeats.setBounds(123, 143, 48, 22);
+		contentPane.add(fSeats);
 
 		textFieldPhone = new JTextField();
 		textFieldPhone.setBounds(123, 341, 195, 22);
 		contentPane.add(textFieldPhone);
 		textFieldPhone.setColumns(10);
-		
+
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(281, 401, 97, 25);
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Get text values
-				int id = 29; // �arf a� breyta
+				int id = bookingController.getBookingId() + 1;
 				String name = getTextFieldName();
 				int securityNr = getTextFieldSocialSec();
 				String email = getTextFieldMail();
 				int phone = getTextFieldPhone();
-				int reservedSeats = getNumSeats();
+				int reservedSeats = (Integer) eSeats.getValue() + (Integer) fSeats.getValue();
 				int flightNumber = flight.getFlightnumber();
-				
+
+				int numESeats = (Integer) eSeats.getValue();
+				int numFSeats = (Integer) fSeats.getValue();
+
 				BookingModel book = new BookingModel(id, name,
-							securityNr, email, phone, reservedSeats,
-							flightNumber);
-				
+						securityNr, email, phone, reservedSeats,
+						flightNumber);
+
 				BookingController bookFlight = new BookingController(book);
-				
+
 				bookFlight.addNewBooking();
+
+				flight.getSeatInfo().updateEconomyClass(numESeats);
+				flight.getSeatInfo().updateFirstClass(numFSeats);
 				
+				updateSeats(numFSeats, numESeats);
+
 			}
 		});
 		contentPane.add(btnSubmit);
 	}
-	
+
 	public int getTextFieldSocialSec() {
 		int sn = Integer.parseInt(textFieldSocialSec.getText());
 		return sn;
 	}
-	
+
 	public String getTextFieldName() {
 		String name = textFieldName.getText();
 		return name;
 	}
-	
+
 	public String getTextFieldMail() {
 		String mail = textFieldMail.getText();
 		return mail;
 	}
-	
+
 	public int getTextFieldPhone() {
 		int phone = Integer.parseInt(textFieldPhone.getText());
 		return phone;
 	}
-	
-	public int getNumSeats() {
-		int numSeats = (Integer) seats.getValue();
+
+	public int getNumESeats() {
+		int numSeats = (Integer) eSeats.getValue();
 		return numSeats;
+	}
+
+	public void updateSeats(int first, int eco) {
+		this.firstClass -= first;
+		this.economy -= eco;
+		this.avalibleSeats = this.firstClass + this.economy;
 	}
 }
