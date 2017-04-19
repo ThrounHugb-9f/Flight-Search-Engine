@@ -41,7 +41,7 @@ public class AdminLoginUI extends JFrame {
 				
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Error");
+					JOptionPane.showMessageDialog(null, "Error, wrong username or password");
 				}
 				
 				
