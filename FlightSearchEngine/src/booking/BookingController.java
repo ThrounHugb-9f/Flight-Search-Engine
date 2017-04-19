@@ -21,8 +21,8 @@ public class BookingController {
 		bookingManager.addNewBooking(booking);
 	}
 	
-	public static void main (String[] args) {
-		
+	public int getBookingId() {
+		return bookingManager.getId();
 	}
 
 }

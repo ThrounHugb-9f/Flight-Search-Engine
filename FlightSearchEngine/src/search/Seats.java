@@ -25,8 +25,17 @@ public class Seats {
 	}
 	
 	public void updateFirstClass(int numSeats) {
-		this.avalibleSeats = this.avalibleSeats - numSeats;
-		this.firstClass = this.firstClass - numSeats;
+		if (avalibleSeats - numSeats < 0) {
+			throw new IllegalArgumentException("No more seats are avalible");
+		} else {
+			this.avalibleSeats = this.avalibleSeats - numSeats;
+		}
+		
+		if (firstClass - numSeats < 0) {
+			throw new IllegalArgumentException("No more First Class seats are avalible");
+		} else {
+			this.firstClass = this.firstClass - numSeats;
+		}
 	}
 	
 	public int getEconomyClass() {
@@ -34,8 +43,16 @@ public class Seats {
 	}
 	
 	public void updateEconomyClass(int numSeats) {
-		this.avalibleSeats = this.avalibleSeats - numSeats;
-		this.economyClass = this.economyClass - numSeats;
+		if (avalibleSeats - numSeats < 0) {
+			throw new IllegalArgumentException("No more seats are avalible");
+		} else {
+			this.avalibleSeats = this.avalibleSeats - numSeats;
+		}
+		
+		if (economyClass - numSeats < 0) {
+			throw new IllegalArgumentException("No more Economy Class seats are avalible");
+		} else {
+			this.economyClass = this.economyClass - numSeats;
+		}
 	}
-
 }
