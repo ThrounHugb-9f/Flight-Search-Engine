@@ -53,7 +53,7 @@ ALTER TABLE adminlogin OWNER TO gunnarmarhardarson;
 CREATE TABLE bookings (
     id integer NOT NULL,
     name character varying(100) NOT NULL,
-    kennitala integer NOT NULL,
+    kennitala character(10) NOT NULL,
     email character varying(100) NOT NULL,
     phonenumber integer,
     seatsreserved integer NOT NULL,
@@ -98,8 +98,7 @@ admin	1234
 COPY bookings (id, name, kennitala, email, phonenumber, seatsreserved, flightnumber) FROM stdin;
 1	Jón Jónsson	1202832629	john@email.com	5934346	3	26
 2	Helgi Sigurjónsson	1704693829	helgi@email.com	5636806	2	12
-3	Jóna Atladóttir	803927419	jona@email.com	8453673	1	2
-29	Hobo	92958230	hobo@bobo.com	393939	5	17
+3	Jóna Atladóttir	1205822309	jona@email.com	8453673	1	2
 \.
 
 
@@ -154,14 +153,6 @@ COPY flightdata (flightnumber, departure, arrival, departuredate, departuretime,
 
 
 --
--- Name: bookings bookings_email_key; Type: CONSTRAINT; Schema: public; Owner: gunnarmarhardarson
---
-
-ALTER TABLE ONLY bookings
-    ADD CONSTRAINT bookings_email_key UNIQUE (email);
-
-
---
 -- Name: bookings bookings_pkey; Type: CONSTRAINT; Schema: public; Owner: gunnarmarhardarson
 --
 
@@ -175,14 +166,6 @@ ALTER TABLE ONLY bookings
 
 ALTER TABLE ONLY flightdata
     ADD CONSTRAINT flightdata_pkey PRIMARY KEY (flightnumber);
-
-
---
--- Name: bookings bookings_flightnumber_fkey; Type: FK CONSTRAINT; Schema: public; Owner: gunnarmarhardarson
---
-
-ALTER TABLE ONLY bookings
-    ADD CONSTRAINT bookings_flightnumber_fkey FOREIGN KEY (flightnumber) REFERENCES flightdata(flightnumber);
 
 
 --
