@@ -44,27 +44,27 @@ public class BookingUI extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblAvalible = new JLabel("Avalible seats:");
-		lblAvalible.setBounds(200, 83, 56, 16);
+		lblAvalible.setBounds(200, 83, 97, 16);
 		contentPane.add(lblAvalible);
 
 		JLabel lblAvalibleNr = new JLabel(" " + avalibleSeats);
-		lblAvalibleNr.setBounds(280, 83, 56, 16);
+		lblAvalibleNr.setBounds(322, 83, 56, 16);
 		contentPane.add(lblAvalibleNr);
 
 		JLabel lblEconomy = new JLabel("Economy:");
-		lblEconomy.setBounds(200, 103, 56, 16);
+		lblEconomy.setBounds(200, 103, 97, 16);
 		contentPane.add(lblEconomy);
 
 		JLabel lblEconomyNr = new JLabel(" " + economy);
-		lblEconomyNr.setBounds(280, 103, 56, 16);
+		lblEconomyNr.setBounds(322, 103, 56, 16);
 		contentPane.add(lblEconomyNr);
 
 		JLabel lblFirstClass = new JLabel("First Class:");
-		lblFirstClass.setBounds(200, 123, 56, 16);
+		lblFirstClass.setBounds(200, 123, 97, 16);
 		contentPane.add(lblFirstClass);
 
 		JLabel lblFirstClassNr = new JLabel(" " + firstClass);
-		lblFirstClassNr.setBounds(280, 123, 56, 16);
+		lblFirstClassNr.setBounds(322, 123, 56, 16);
 		contentPane.add(lblFirstClassNr);
 
 		JLabel lblName = new JLabel("Name");
@@ -76,7 +76,7 @@ public class BookingUI extends JFrame {
 		contentPane.add(flightNr);
 
 		JLabel lblNewLabel = new JLabel("Flight Nr.");
-		lblNewLabel.setBounds(12, 83, 56, 16);
+		lblNewLabel.setBounds(12, 83, 87, 16);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblKe = new JLabel("Social security Nr.");
@@ -88,7 +88,7 @@ public class BookingUI extends JFrame {
 		contentPane.add(lblEmail);
 
 		JLabel lblPhoneNr = new JLabel("Phone Nr.");
-		lblPhoneNr.setBounds(12, 344, 56, 16);
+		lblPhoneNr.setBounds(12, 344, 87, 16);
 		contentPane.add(lblPhoneNr);
 
 		JLabel lblBookYourFlight = new JLabel("Book your Flight!");
@@ -116,11 +116,11 @@ public class BookingUI extends JFrame {
 		contentPane.add(separator);
 
 		JLabel lblESeats = new JLabel("Economy Seats");
-		lblESeats.setBounds(12, 119, 56, 16);
+		lblESeats.setBounds(12, 119, 99, 16);
 		contentPane.add(lblESeats);
 
 		JLabel lblFSeats = new JLabel("First Class Seats");
-		lblFSeats.setBounds(12, 139, 56, 16);
+		lblFSeats.setBounds(12, 139, 109, 16);
 		contentPane.add(lblFSeats);
 
 		eSeats = new JSpinner(new SpinnerNumberModel(0,0,economy, 1));
@@ -162,6 +162,8 @@ public class BookingUI extends JFrame {
 
 				flight.updateEconomyClass(numESeats);
 				flight.updateFirstClass(numFSeats);
+				
+				JOptionPane.showMessageDialog(null, "Your flight has been booked!");
 			}
 		});
 		contentPane.add(btnSubmit);
