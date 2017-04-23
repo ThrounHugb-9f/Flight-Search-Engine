@@ -24,20 +24,17 @@ public class BookingUI extends JFrame {
 	private JTextField textFieldPhone;
 
 	private FlightModel pickedFlight;
-	private int avalibleSeats;
-	private int economy;
-	private int firstClass;
-
+	
 	BookingController bookingController;
 
 	// Constructor
 	public BookingUI(FlightModel flight) {
 		bookingController = new BookingController(flight);
 		pickedFlight = flight;
-
-		avalibleSeats = flight.getSeatInfo().getAvalible();
-		economy = flight.getSeatInfo().getEconomyClass();
-		firstClass = flight.getSeatInfo().getFirstClass();
+		
+		int avalibleSeats = flight.getAvalible();
+		int economy = flight.getEconomyClass();
+		int firstClass = flight.getFirstClass();
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 408, 482);
@@ -163,11 +160,8 @@ public class BookingUI extends JFrame {
 
 				bookFlight.addNewBooking();
 
-				flight.getSeatInfo().updateEconomyClass(numESeats);
-				flight.getSeatInfo().updateFirstClass(numFSeats);
-				
-				updateSeats(numFSeats, numESeats);
-
+				flight.updateEconomyClass(numESeats);
+				flight.updateFirstClass(numFSeats);
 			}
 		});
 		contentPane.add(btnSubmit);
@@ -196,11 +190,5 @@ public class BookingUI extends JFrame {
 	public int getNumESeats() {
 		int numSeats = (Integer) eSeats.getValue();
 		return numSeats;
-	}
-
-	public void updateSeats(int first, int eco) {
-		this.firstClass -= first;
-		this.economy -= eco;
-		this.avalibleSeats = this.firstClass + this.economy;
 	}
 }
